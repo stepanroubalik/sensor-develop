@@ -1,0 +1,19 @@
+/* CSS Document */
+#header{
+height: 5vh;
+background-color: darkgoldenrod;
+}
+
+#mapdiv{
+height: 92vh;
+}
+
+#side_panel{
+height: 92vh;
+background-color: beige;
+}
+
+#footer{
+height: 3vh;
+background-color: darkgoldenrod;
+}
