@@ -18,15 +18,14 @@
     <link rel="stylesheet" href="css/style.css">
     <!--Zoomhome plugin-->
     <link rel="stylesheet" href="./zoomhome/dist/leaflet.zoomhome.css"/>
-    <script src="./zoomhome/dist/leaflet.zoomhome.min.js"></script>  
+    <script src="./zoomhome/dist/leaflet.zoomhome.min.js"></script>
+      
+    <link rel="stylesheet" href="./css/leaflet-sidebar.css" />  
+    <script src="./js/leaflet-sidebar.js"></script>
   </head>
 
   <body>
-      <div id="header" class="col-md-12">
-          <h4>APLIKACE CROP INDEX</h4>
-      
-      </div>
-      <div id="side_panel" class="col-md-3">
+      <!--<div id="side_panel" class="col-md-3">
           <br>
           <h5>Senzorová data</h5>
           <label>Čas záznamu</label>
@@ -60,13 +59,53 @@
           <label>Zobrazit v tabulce</label>
           <button id="filterSubmit" class="btn">OK</button>
           
-      </div>
-      <div id="mapdiv" class="col-md-9"></div>
+      </div>-->
+      <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
+
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Zobrazení rastrových a sensorových dat
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+            </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Zpracování dat<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+            
+
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Odkazy<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
+      <div id="mapdiv" class="col-md-12"></div>
           <script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
+              
+            var sidebar = L.control.sidebar('sidebar').addTo(map);
             
-            var zoomHome = L.Control.zoomHome({position: 'topleft'});
+            var zoomHome = L.Control.zoomHome({position: 'bottomright'});
             zoomHome.addTo(map);
 
             function onEachFeature (feature, layer) {
@@ -106,8 +145,5 @@
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
             L.control.layers(baseLayers, overlays, {collapsed:false}).addTo(map);  
           </script>
-      
-      <!--<div id="footer" class="col-md-12"></div>--> 
-
-  </body>
+      </body>
 </html>
