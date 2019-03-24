@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./zoomhome/dist/leaflet.zoomhome.css"/>
     <script src="./zoomhome/dist/leaflet.zoomhome.min.js"></script>
       
+    <!--sidebar style-->
     <link rel="stylesheet" href="./css/leaflet-sidebar.css" />  
     <script src="./js/leaflet-sidebar.js"></script>
   </head>
@@ -82,6 +83,13 @@
                     Zobrazení rastrových a sensorových dat
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
+                <h5>Senzorová data</h5>
+                <label>Čas záznamu</label>
+                <input type="date" name="datum" value=""><br>
+                <label>Zobrazit v mapě</label>
+                <button id="filterSubmit">OK</button><br>
+                <label>Zobrazit v tabulce</label>
+                <button id="filterSubmit">OK</button>
             </div>
 
             <div class="sidebar-pane" id="profile">
@@ -140,10 +148,11 @@
 
             var overlays = {
             "Tilovaný rastr": rastrvrstva
-            };       
-
+            };
+              
+            
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
-            L.control.layers(baseLayers, overlays, {collapsed:false}).addTo(map);  
+            L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);  
           </script>
       </body>
 </html>
