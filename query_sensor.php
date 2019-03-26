@@ -1,8 +1,8 @@
 <?php
     if (isset($_POST['submit'])){
         $ls=$_POST['datum'];
-        $db = new PDO('pgsql:host=localhost;port=5432;dbname=vegind;', 'postgres', 'dp2019');
-        $sql = $db->prepare("SELECT id, datum, vlhkost FROM sensory WHERE datum> :ls");
+        $db = new PDO('pgsql:host=localhost;port=5432;dbname=sensorapp;', 'postgres', 'diplomka2019');
+        $sql = $db->prepare("SELECT id, datum, vlhkost FROM sensortest WHERE datum= :ls");
         $params = ["ls"=>$ls];
         $sql->execute($params);
     
@@ -26,7 +26,7 @@
     <body>
         <form action="" method="post">
             <input type="date" name="datum" value=""><br>
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Zobraz">
         </form>
     
     

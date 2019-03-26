@@ -27,6 +27,8 @@
 
   <body>
       <!--<div id="side_panel" class="col-md-3">
+     
+          
           <br>
           <h5>Senzorová data</h5>
           <label>Čas záznamu</label>
@@ -59,8 +61,8 @@
           <button id="filterSubmit" class="btn">OK</button><br>
           <label>Zobrazit v tabulce</label>
           <button id="filterSubmit" class="btn">OK</button>
-          
-      </div>-->
+          -->
+      </div>
       <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
         <div class="sidebar-tabs">
@@ -84,15 +86,51 @@
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <h5>Senzorová data</h5>
-                <label>Čas záznamu</label>
-                <input type="date" name="datum" value=""><br>
-                <label>Zobrazit v mapě</label>
-                <button id="filterSubmit">OK</button><br>
-                <label>Zobrazit v tabulce</label>
-                <button id="filterSubmit">OK</button>
+    <div>
+        <input type="date" id="datum" value="2019-03-30"><br>
+                    <select id="typ">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>            
+                    </select><br>
+                    <button id="filterSubmit">Zobraz Tabulku</button>
+                    <hr>
+      </div>
+      <div>
+        <input type="date" id="datum" value="2019-03-30"><br>
+                    <select id="typ">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>            
+                    </select><br>
+                    <button id="filterData">Zobraz sensory</button>
+                    <hr>
+      </div>
+    
+        
+    <script>
+        $("#filterSubmit").click(function(){
+            $.ajax({
+                url:'query_sensor_table.php',
+                type:'POST',
+                data:{
+                    datum: $("#datum").val(),
+                    typ: $("#typ").val()
+                },
+                success: function(response){
+                    $("#resultTable").html(response);
+                }
+            });
+        });
+    </script>
+      
+                
+
+              
+                
             </div>
 
-            <div class="sidebar-pane" id="profile">
+        <div class="sidebar-pane" id="profile">
                 <h1 class="sidebar-header">Zpracování dat<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
             
@@ -104,13 +142,28 @@
             <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Odkazy<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
-        </div>
+        </div>-->
     </div>
       <div id="mapdiv" class="col-md-12"></div>
+        <div id="resultTable"></div>
           <script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
               
+            $("#filterData").click(function(){
+                $.ajax({
+                    url:'query_sensor_data.php',
+                    type:'POST',
+                    data:{
+                        datum: $("#datum").val(),
+                        typ: $("#typ").val()
+                    },
+                    success: function(response){
+                        var sLayer=L.GeoJSON(JSON.parse(response)).addTo(map);
+                    }
+                });
+            });
+            
             var sidebar = L.control.sidebar('sidebar').addTo(map);
             
             var zoomHome = L.Control.zoomHome({position: 'bottomright'});
@@ -147,7 +200,9 @@
             };
 
             var overlays = {
-            "Tilovaný rastr": rastrvrstva
+            "Tilovaný rastr": rastrvrstva,
+            
+            
             };
               
             
@@ -155,4 +210,5 @@
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);  
           </script>
       </body>
+     
 </html>
