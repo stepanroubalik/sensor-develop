@@ -1,6 +1,6 @@
 <?php
         if (isset($_POST['submit'])){
-            $db = new PDO('pgsql:host=localhost;port=5432;dbname=vegind;', 'postgres', 'dp2019');
+            $db = new PDO('pgsql:host=localhost;port=5432;dbname=sensorapp;', 'postgres', 'diplomka2019');
             $table = $_POST['table'];
             $sql = $db->prepare("SELECT rid, ST_AsTIFF(rast) FROM $table");
             $sql->execute();

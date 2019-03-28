@@ -30,7 +30,7 @@
             <div class="sidebar-tabs">
                 <ul role="tablist">
                     <li><a href="#home" role="tab"><i class="fa fa-file-image-o"></i></a></li>
-                    <li><a href="#profile" role="tab"><i class="fa fa-wifi"></i></a></li>
+                    <li><a href="#profile" role="tab"><i class="fa fa-rss"></i></a></li>
                     <li><a href="#messages" role="tab"><i class="fa fa-gears"></i></a></li>
                     <li><a href="https://github.com/stepanroubalik/sensor-develop" role="tab" target="_blank"><i class="fa fa-envelope"></i></a></li>
                 </ul>
@@ -47,38 +47,38 @@
                             Zobrazení rastrových dat
                             <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                         </h1>
-                            <br><label class="form-check-label">Zobrazit snámky v časovém období <input type="date" id="datum" value="2019-03-30"></label>
+                            <br><label class="form-check-label">Zobrazit snímky v časovém období <input type="date" id="" value="2019-03-30"></label>
                         <div class="input-group mb-3">
                             <h5><strong>Sentinel-2</strong></h5>
-                            <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">RED (B04) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">NIR (B08) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">SWIR (B11) <br>
-                            </label>
-
+                            <select id="typ">
+                                <option value="A">RED (B04)</option>
+                                <option value="B">NIR (B08)</option>
+                                <option value="C">SWIR (B11)</option>            
+                            </select>
                             <h5><strong>Landsat 7</strong></h5>
-                            <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">RED (B04) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">NIR (B08) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">SWIR (B11)
-                            </label>
+                            <select id="typ">
+                                <option value="A">RED (B04)</option>
+                                <option value="B">NIR (B08)</option>
+                                <option value="C">SWIR (B11)</option>            
+                            </select>
 
                             <h5><strong>Landsat 8</strong></h5>
-                            <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">RED (B04) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">NIR (B08) <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">SWIR (B11)
-                            </label>
+                            <select id="typ">
+                                <option value="A">RED (B04)</option>
+                                <option value="B">NIR (B08)</option>
+                                <option value="C">SWIR (B11)</option>            
+                            </select><br><br>
                         </div>
                         <div class="btn-group">
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Načíst metadata</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Import z DB</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Zobrazit rastr</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">převést na 8-bitový rastr</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">převést na 16-bitový rastr</button>
+                            <button id="Metadata" class="btn btn-primary btn-sm btn-block">Načíst metadata</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">Import z DB</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">Zobrazit rastr</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">převést na 8-bitový rastr</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">převést na 16-bitový rastr</button>
                         </div>
+                        
                     </div>
-                <div class="sidebar-pane" id="profile">
+                    <div class="sidebar-pane" id="profile">
                         <h1 class="sidebar-header">
                             Zobrazení senzorových dat
                             <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
@@ -87,48 +87,56 @@
                         <div>
                             <br>
                             <label class="form-check-label">Zobrazit senzory časovém období <input type="date" id="datum" value="2019-03-30"></label>
-                            <label class="form-check-label">
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">typ 1 <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">typ 2 <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">typ 3 <br>
-                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">typ 4
-                            </label>
+                            <select id="typ">
+                                <option value='A'>A</option>
+                                <option value='B'>B</option>
+                                <option value='C'>C</option>            
+                            </select>
+                            
                         </div>
                         <div class="btn-group">
                             <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Zobrazit data v tabulce</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Odstranit tabulku </button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Zobrazit data v mapě</button>
-                            <button id="filterSubmit" class="btn btn-primary btn-sm btn-block">Odstranit z mapy</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">Odstranit tabulku </button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">Zobrazit data v mapě</button>
+                            <button id="" class="btn btn-primary btn-sm btn-block">Odstranit z mapy</button>
                         </div>
+                        <div id="resultTable"></div>
+                       
+                        
+                        <script>
+                            $("#filterSubmit").click(function(){
+                                $.ajax({
+                                    url:'query_sensor_table.php',
+                                    type:'POST',
+                                    data:{
+                                        datum: $("#datum").val()
+                                        
+                                    },
+                                    success: function(response){
+                                        $("#resultTable").html(response);
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
                 <div class="sidebar-pane" id="messages">
                 <h1 class="sidebar-header">Výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
                 <div class="sidebar-pane" id="settings">
-                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h1 class="sidebar-header">Nápověda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 </div>
             </div><!---->
         </div>
+        
+        
+        <div id="mapdiv"></div>
         <div id="resultTable"></div>
-        <div id="mapdiv" class="col-md-12"></div>
+        
+        
         <script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
               
-            $("#filterData").click(function(){
-                $.ajax({
-                    url:'query_sensor_data.php',
-                    type:'POST',
-                    data:{
-                        datum: $("#datum").val(),
-                        typ: $("#typ").val()
-                    },
-                    success: function(response){
-                        var sLayer=L.GeoJSON(JSON.parse(response)).addTo(map);
-                    }
-                });
-            });
-            
             var sidebar = L.control.sidebar('sidebar').addTo(map);
             
             var zoomHome = L.Control.zoomHome({position: 'bottomright'});
@@ -157,7 +165,14 @@
             var rastrvrstva = L.tileLayer('http://mapy.upol.cz/tileserver/1745/{z}/{x}/{y}.png', {
             bounds: mapBounds,
             opacity: 0.8
-            }).addTo(map);       
+            }).addTo(map);
+            
+            var rastr = L.tileLayer('http://localhost/vyvoj/data/l7b04/{z}/{x}/{y}.tif', {
+            bounds: mapBounds,
+            opacity: 0.8
+            }).addTo(map);
+            
+            
 
 
             var baseLayers = {
@@ -166,6 +181,7 @@
 
             var overlays = {
             "Tilovaný rastr": rastrvrstva,
+            "rastr": rastr
             
             
             };
