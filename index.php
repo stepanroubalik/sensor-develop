@@ -125,6 +125,22 @@
                             <button id="" class="btn btn-primary btn-sm btn-block">Zobrazit rastr</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">převést na 8-bitový rastr</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">převést na 16-bitový rastr</button>
+                            <p>POLYGON((16.0787018413345 48.9451130973981,16.2429583276739 48.9434598801743,16.2402790547419 48.8352659676027,16.0763764538197 48.8369129363666,16.0787018413345 48.9451130973981))</p>
+                            
+                            <form>
+                            Levý horní roh x:<br>
+                            <input type="text" id="text1x" name="LH" value=""><br>
+                            Levý horní roh y:<br>
+                            <input type="text" id="text1y" name="LH" value=""><br>
+                                
+                            Pravý spodní roh x:<br>
+                            <input type="text" id="text2x" name="PS" value=""><br>
+                            Pravý spodní roh y:<br>
+                            <input type="text" id="text2y" name="PS" value=""><br><br>
+                                </form>
+                                <br>
+                               
+                            <button onclick="getBound()">odeslat</button>
                         </div>
                         </div>
                        
@@ -193,6 +209,11 @@
         <script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
+            
+            var imageUrl = 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
+            L.imageOverlay(imageUrl, imageBounds).addTo(map);
+            console.log('test');
               
             var sidebar = L.control.sidebar('sidebar').addTo(map);
             
@@ -223,13 +244,13 @@
             bounds: mapBounds,
             opacity: 0.8
             }).addTo(map);
-            
-            var rastr = L.tileLayer('http://localhost/vyvoj/data/l7b04/{z}/{x}/{y}.tif', {
+        
+            /*var rastr = L.tileLayer('http://localhost/vyvoj/data/l7b04/{z}/{x}/{y}.tif', {
             bounds: mapBounds,
             opacity: 0.8
-            }).addTo(map);
+            }).addTo(map);*/
             
-            
+
 
 
             var baseLayers = {
@@ -238,15 +259,33 @@
 
             var overlays = {
             "Tilovaný rastr": rastrvrstva,
-            "rastr": rastr
-            
-            
             };
               
             
+            L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
-            L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);  
-          </script>
+            function getBound(){
+                var text1x = $('#text1x').val(), 
+                text1y = $('#text1y').val(),
+                text2x = $('#text2x').val(),    
+                text2y = $('#text2y').val();    
+                //console.log($('#text1').val());
+                //console.log($('#text2').val());
+                L.marker([text1y, text1x]).addTo(map);
+                L.marker([text2y, text2x]).addTo(map);
+                map.panTo([text1y, text1x]);
+                var imageBounds = [[text1y, text1x],[text2y, text2x]];
+                var imageUrl = 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg';
+                L.imageOverlay(imageUrl, imageBounds).addTo(map);
+                
+                
+                /*POLYGON((16.0787018413345 48.9451130973981,16.2429583276739 48.9434598801743,16.2402790547419 48.8352659676027,16.0763764538197 48.8369129363666,16.0787018413345 48.9451130973981))*/
+                
+                
+                
+                
+            }
+        </script>
         <script>
                             $("#filterTable").click(function(){
                                 $.ajax({
@@ -262,6 +301,6 @@
                                     }
                                 });
                             });
-                    </script>
+            </script>
     </body>
 </html>
