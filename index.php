@@ -119,9 +119,17 @@
                                 <option value="C">rastr3</option>             
                             </select><br><br>
                             </div>
+                            <div class="col-sm-4"><br>
+                                  <label class="form-check-label">Zobrazit bounding</label>
+                                <select id="sens">
+                                    <option value="l7b03">l7b03</option>
+                                    
+                                </select>
+                            </div>
                             <div class="btn-group">
                             <button id="Metadata" class="btn btn-primary btn-sm btn-block">Načíst metadata</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">Import z DB</button>
+                            <button id="boundingbox" class="btn btn-primary btn-sm btn-block">Zobrazit tabulku</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">Zobrazit rastr</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">převést na 8-bitový rastr</button>
                             <button id="" class="btn btn-primary btn-sm btn-block">převést na 16-bitový rastr</button>
@@ -205,6 +213,7 @@
         </div>
         <div id="mapdiv"></div>
         <div id="resultTable"></div>
+        <div id="bound"></div>
         <!--Scripty-->
         <script>
             var map = L.map('mapdiv', { zoomControl:false });
@@ -302,5 +311,19 @@
                                 });
                             });
             </script>
+        <script>
+        $("#boundingbox").click(function(){
+            $.ajax({
+                url:'bound.php',
+                type:'POST',
+                data:{
+                    typ: $("#datum").val(),
+                    },
+                    success: function(response){
+                    $("#bound").html(response);
+                    }
+                                });
+                            });
+        </script>
     </body>
 </html>
