@@ -30,7 +30,7 @@
                 <ul role="tablist">
                     <li><a href="#home" role="tab"><i class="fa fa-file-image-o"></i></a></li>
                     <li><a href="#profile" role="tab"><i class="fa fa-bullseye"></i></a></li>
-                    <li><a href="#messages" role="tab"><i class="fa fa-wrench"></i></a></li>
+                    <!--<li><a href="#messages" role="tab"><i class="fa fa-wrench"></i></a></li>-->
                 </ul>
 
                 <ul role="tablist">
@@ -39,146 +39,66 @@
             </div>
             <!-- Tab panes -->
             <div class="sidebar-content">
-                <div class="sidebar-pane" id="home">
-                        <h1 class="sidebar-header">
-                            Rastrová data
-                            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                        </h1>
-                        <h4>Výběr rastru</h4>
-                            <div class="col-sm-4">
-                            <h5><strong>Sentinel-2 RED</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Landsat 7 RED</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Landsat 8 RED</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>             
-                            </select><br>
-                            </div>
-                        
-                            <div class="col-sm-4">
-                            <h5><strong>Sentinel-2 <br> NIR</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Landsat 7 <br> NIR</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Landsat 8 <br> NIR</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>             
-                            </select><br>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Sentinel-2 <br> SWIR</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <h5><strong>Landsat 7 <br> SWIR</strong></h5>
-                            <select id="typ">
-                                <option value="A">rastr1</option>
-                                <option value="B">rastr2</option>
-                                <option value="C">rastr3</option>            
-                            </select>
-                            </div>
-                            <div class="col-sm-4">
-                            <label class="form-check-label">Zobrazit bounding</label>
-                                <select id="typ">
-                                    <option value="1">1</option>
-                                    
-                                </select><br><br>
-                            </div>
-                            <div class="col-sm-4"><br>
-                                  
-                            </div>
-                            <div class="btn-group">
-                            
-                            <button id="" class="btn btn-primary btn-sm btn-block">Import z DB</button>
-                            <button id="boundingbox" class="btn btn-primary btn-sm btn-block">Zobrazit tabulku</button>
-                            <div id="bound"></div>
-                           
-                                
-                            <script>
-                                $("#boundingbox").click(function(){
-                                $.ajax({
-                                    url:'bound.php',
-                                    type:'POST',
-                                    data:{
-                                        typ: $("#typ").val(),
-                                        },
-                                        success: function(response){
-                                            //console.log(response);
-                                            //$("#bound").html(response);
-                                            myParser(response);
-                                        }
-                                });
-                            });
-                            
-                                
-                            
-                                function myParser(response) {
-                                  var res = response.split(",");
-                                  var first = res[0].split("((");
-                                  var firstA = first[1].split(" ");
-                                  var third = res[2].split(" ");
-                                  //document.getElementById("bound").innerHTML = "prvni souřadnice = " + firstA[0] + " a druhá = " + firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
-                                  getBound(firstA, third);
-                                }
-                            </script>
-                            
-                                
-                                
-                                
-                            
-                            <!--<form>
-                            Levý horní roh x:<br>
-                            <input type="text" id="text1x" name="LH" value=""><br>
-                            Levý horní roh y:<br>
-                            <input type="text" id="text1y" name="LH" value=""><br>
-                                
-                            Pravý spodní roh x:<br>
-                            <input type="text" id="text2x" name="PS" value=""><br>
-                            Pravý spodní roh y:<br>
-                            <input type="text" id="text2y" name="PS" value=""><br><br>
-                                </form>
-                                <br>
-                               
-                            <button onclick="getBound()">odeslat</button>-->
-                        
-                        </div>
-                        </div>
-                       
-                        
-                    
+              <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">Rastrová data <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                  <div class="col-sm-12">
+                    <h5><strong>RASTR</strong></h5>
+                    <select id="typ">
+                        <option value="A">rastr1</option>
+                        <option value="B">rastr2</option>
+                        <option value="C">rastr3</option>            
+                    </select>
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <hr>
+                    </div>     
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 16-bit</button>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">OK</button>
+                    <hr>
+                    </div>     
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <h5><strong>PÁSMO 1</strong></h5>
+                    <select id="typ">
+                        <option value="A">rastr1</option>
+                        <option value="B">rastr2</option>
+                        <option value="C">rastr3</option>            
+                    </select>    
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <h5><strong>PÁSMO 2</strong></h5>
+                    <select id="typ">
+                        <option value="A">rastr1</option>
+                        <option value="B">rastr2</option>
+                        <option value="C">rastr3</option>            
+                    </select>    
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU NDVI</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU NDMI</button>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU SAVI</button>
+                    <hr>
+                    </div>     
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <hr>
+                    </div>     
+                  </div>
+                </div>
+                  
                 <div class="sidebar-pane" id="profile">
                     <h1 class="sidebar-header">Senzorová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                     </h1>          
@@ -190,15 +110,27 @@
                             <option value="C">C</option>            
                         </select>
                     </div>
-                    <div class="btn-group">
-                        <button id="filterTable" class="btn btn-primary btn-sm btn-block">Zobrazit data v tabulce</button>
-                        <button id="" class="btn btn-primary btn-sm btn-block">Odstranit tabulku </button>
-                        <button id="" class="btn btn-primary btn-sm btn-block">Zobrazit data v mapě</button>
-                        <button id="" class="btn btn-primary btn-sm btn-block">Odstranit z mapy</button><br>
-                    </div>
-                    <div id="resultTable"></div>
+                    <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT TABULKU</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT TABULKU</button>
+                    <hr>
+                    </div>     
+                  </div>
+                  <div class="col-sm-6"><br>
+                    <div class="btn-group-vertical">
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT Z MAPY</button>
+                    <hr>
+                    </div>     
+                  </div>
+                  <div class="col-sm-12">
+                    <h5><strong>INTERPOLACE SENZOROVÝCH DAT</strong></h5>
+                    
+                  </div>
+                  <div id="resultTable"></div>
                 </div>
-                <div class="sidebar-pane" id="messages">
+                <!--<div class="sidebar-pane" id="messages">
                 <h1 class="sidebar-header">Výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                     <div>
                         <h4>Vegetační indexy</h4>
@@ -230,7 +162,7 @@
                         <h4>Korekce rastrových dat</h4>
                         <h4>Statistické výpočty</h4>
                     </div>
-            </div>
+            </div>-->
                 <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Nápověda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 </div>
@@ -243,11 +175,8 @@
         <script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
-            
-            
             var sidebar = L.control.sidebar('sidebar').addTo(map);
-            
-            var zoomHome = L.Control.zoomHome({position: 'bottomright'});
+            var zoomHome = L.Control.zoomHome({position: 'topright'});
             zoomHome.addTo(map);
 
             function onEachFeature (feature, layer) {
@@ -270,29 +199,13 @@
             id: 'mapbox.streets'
             }).addTo(map);
 
-            var rastrvrstva = L.tileLayer('http://mapy.upol.cz/tileserver/1745/{z}/{x}/{y}.png', {
-            bounds: mapBounds,
-            opacity: 0.8
-            }).addTo(map);
-        
-            /*var rastr = L.tileLayer('http://localhost/vyvoj/data/l7b04/{z}/{x}/{y}.tif', {
-            bounds: mapBounds,
-            opacity: 0.8
-            }).addTo(map);*/
-            
-
-
-
             var baseLayers = {
             "Defaultní": defaultni, 
             };
 
             var overlays = {
-            "Tilovaný rastr": rastrvrstva,
-            
             };
-              
-            
+                
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
             function getBound(first, third){
@@ -319,31 +232,48 @@
                         "rastrovy snimek": rastrSnimek
                     }
                 }
-                
-                
-                /*POLYGON((16.0787018413345 48.9451130973981,16.2429583276739 48.9434598801743,16.2402790547419 48.8352659676027,16.0763764538197 48.8369129363666,16.0787018413345 48.9451130973981))*/
-                
-                
-                
-                
             }
-        </script>
-        <script>
-                            $("#filterTable").click(function(){
-                                $.ajax({
-                                    url:'query_sensor_table.php',
-                                    type:'POST',
-                                    data:{
-                                        datum: $("#datum").val(),
-                                        sens: $("#sens").val()
-                                        
-                                    },
-                                    success: function(response){
-                                        $("#resultTable").html(response);
-                                    }
-                                });
-                            });
-            </script>
-        
-    </body>
+    </script>
+    <script>
+        $("#filterTable").click(function(){
+            $.ajax({
+                url:'query_sensor_table.php',
+                type:'POST',
+                data:{
+                    datum: $("#datum").val(),
+                    sens: $("#sens").val()
+
+                },
+                success: function(response){
+                    $("#resultTable").html(response);
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#boundingbox").click(function(){
+        $.ajax({
+            url:'bound.php',
+            type:'POST',
+            data:{
+                typ: $("#typ").val(),
+                },
+                success: function(response){
+                    //console.log(response);
+                    //$("#bound").html(response);
+                    myParser(response);
+                }
+            });
+        });
+
+        function myParser(response) {
+          var res = response.split(",");
+          var first = res[0].split("((");
+          var firstA = first[1].split(" ");
+          var third = res[2].split(" ");
+          //document.getElementById("bound").innerHTML = "prvni souřadnice = " + firstA[0] + " a druhá = " + firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
+          getBound(firstA, third);
+        }
+    </script>
+  </body>
 </html>
