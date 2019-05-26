@@ -127,8 +127,54 @@
                             <div id="bound"></div>
                            
                                 
+                            <script>
+                                $("#boundingbox").click(function(){
+                                $.ajax({
+                                    url:'bound.php',
+                                    type:'POST',
+                                    data:{
+                                        typ: $("#typ").val(),
+                                        },
+                                        success: function(response){
+                                            //console.log(response);
+                                            //$("#bound").html(response);
+                                            myParser(response);
+                                        }
+                                });
+                            });
                             
-                          </div>
+                                
+                            
+                                function myParser(response) {
+                                  var res = response.split(",");
+                                  var first = res[0].split("((");
+                                  var firstA = first[1].split(" ");
+                                  var third = res[2].split(" ");
+                                  //document.getElementById("bound").innerHTML = "prvni souřadnice = " + firstA[0] + " a druhá = " + firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
+                                  getBound(firstA, third);
+                                }
+                            </script>
+                            
+                                
+                                
+                                
+                            
+                            <!--<form>
+                            Levý horní roh x:<br>
+                            <input type="text" id="text1x" name="LH" value=""><br>
+                            Levý horní roh y:<br>
+                            <input type="text" id="text1y" name="LH" value=""><br>
+                                
+                            Pravý spodní roh x:<br>
+                            <input type="text" id="text2x" name="PS" value=""><br>
+                            Pravý spodní roh y:<br>
+                            <input type="text" id="text2y" name="PS" value=""><br><br>
+                                </form>
+                                <br>
+                               
+                            <button onclick="getBound()">odeslat</button>-->
+                        
+                        </div>
                         </div>
                        
                         
@@ -282,31 +328,6 @@
                 
             }
         </script>
-        <script>
-                $("#boundingbox").click(function(){
-                $.ajax({
-                    url:'bound.php',
-                    type:'POST',
-                    data:{
-                        typ: $("#typ").val(),
-                        },
-                        success: function(response){
-                            //console.log(response);
-                            //$("#bound").html(response);
-                            myParser(response);
-                        }
-                });
-            });
-
-                function myParser(response) {
-                  var res = response.split(",");
-                  var first = res[0].split("((");
-                  var firstA = first[1].split(" ");
-                  var third = res[2].split(" ");
-                  //document.getElementById("bound").innerHTML = "prvni souřadnice = " + firstA[0] + " a druhá = " + firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
-                  getBound(firstA, third);
-                }
-                            </script>
         <script>
                             $("#filterTable").click(function(){
                                 $.ajax({
