@@ -1,7 +1,7 @@
 <?php
     $ls=$_POST['datum'];
     $rs=$_POST['typ'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=sensorapp;', 'postgres', 'diplomka2019');
+    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka', 'postgres', 'sr');
     $sql = $db->prepare("SELECT rid As rid, ST_Width(rast) As w, ST_Height(rast) As h, round(ST_PixelWidth(rast)::numeric,4) AS pw, round(ST_PixelHeight(rast)::numeric,4) As ph, ST_SRID(rast) AS srid, T_BandPixelType(rast,2) AS bt
     FROM public.landsat
     WHERE datum = :ls AND typ = :rs");
