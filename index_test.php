@@ -38,28 +38,53 @@
                 </ul>
             </div>
             <!-- Tab panes -->
+			<?php
+			if (isset($_POST['submit'])){
+				$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+				$input1 = $_POST['input1'];
+				$input2 = $_POST['input2'];
+				$result = $_POST['result'];
+				$sql = $db->prepare("CREATE TABLE $result AS
+									SELECT ST_MapAlgebra (arast, 1, brast, 1, '((1 + 0.5) * ([rast1] - [rast2]) / ([rast1] + [rast2] + 0.5))::float', '32BF') AS rast
+									FROM (SELECT a.rast as arast, b.rast as brast FROM $input1 a INNER JOIN $input2 b ON a.rid = b.rid) as joined");
+				$sql->execute();
+				}
+			?>
             <div class="sidebar-content">
               <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Rastrová data <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                   <div class="col-sm-12">
-                    <h5><strong>DB RASTR</strong></h5>
+                    <h5><strong>RASTR</strong></h5>
                     <select id="typ">
-                        <option name="inputrastr" value="l7b04">l7b04</option>
-                        <option name="inputrastr" value="l7b05">l7b05</option>
-                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                        <option name="inputrastr" value="A">l7b04</option>
+                        <option name="inputrastr" value="B">l7b05</option>
+                        <option name="inputrastr" value="C">l7b03</option>            
                     </select>
+					
+					<h2>dotaz na rastr</h2>
+			<h2>dotaz na rastr</h2>
+        <form action="" method="post">
+            <input type="text" name="input1" value=""><br>
+            <input type="text" name="input2" value=""><br>
+            <input type="text" name="result" value=""><br>
+			<input type="button" onclick="alert('Hello World!')" value="metadata!">
+            
+            <input type="submit" name="submit" value="Submit">
+        </form>
+        <hr>
+        <hr>
           
-					<hr>
+        <hr>
                                 
                    
         
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-6"><br>
                     <div class="btn-group-vertical">
                     <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
                     <button id="boundingbox" class="btn btn-primary btn-sm btn-block" onclick="klik()">ZOBRAZIT V MAPĚ</button>
-					<hr>
+                    <hr>
                     </div>     
                   </div>
 				  <script>
@@ -67,7 +92,7 @@
 						alert("rastr byl vypočítán");
 					}
 					</script>
-                  <div class="col-sm-6">
+                  <div class="col-sm-6"><br>
                     <div class="btn-group-vertical">
                     <button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 16-bit</button>
@@ -243,7 +268,7 @@
                 //L.marker([text2y, text2x]).addTo(map);
                 map.panTo([text1y, text1x]);
                 var imageBounds = [[text1y, text1x],[text2y, text2x]];
-                var imageUrl = './data/export/l7b03.png';
+                var imageUrl = './data/export/myfile.png';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
                 console.log(rastrSnimek=='');
                 if (rastrSnimek==''){

@@ -1,6 +1,6 @@
 <?php
         if (isset($_POST['submit'])){
-            $db = new PDO('pgsql:host=localhost;port=5432;dbname=vegind;', 'postgres', 'dp2019');
+            $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
             $input1 = $_POST['input1'];
             $input2 = $_POST['input2'];
             $result = $_POST['result'];
