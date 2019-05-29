@@ -50,7 +50,7 @@
                     </select>
           
 					<hr>
-                                
+                          
                    
         
                   </div>
@@ -64,7 +64,7 @@
                   </div>
 				  <script>
 					function klik() {
-						alert("rastr byl vypočítán");
+						alert("Zobrazení");
 					}
 					</script>
                   <div class="col-sm-6">
@@ -77,7 +77,7 @@
                   </div>
 				  <div class="col-sm-12">
                     <h5><strong>RASTR</strong></h5>
-                    <select id="typ">
+                    <select id="">
                         <option value="A">rastr1</option>
                         <option value="B">rastr2</option>
                                     
@@ -87,7 +87,7 @@
 				  <hr>
                   <div class="col-sm-6"><br>
                     <h5><strong>PÁSMO 1</strong></h5>
-                    <select id="typ">
+                    <select id="">
                         <option value="A">rastr1</option>
                         <option value="B">rastr2</option>
                         <option value="C">rastr3</option>            
@@ -95,7 +95,7 @@
                   </div>
                   <div class="col-sm-6"><br>
                     <h5><strong>PÁSMO 2</strong></h5>
-                    <select id="typ">
+                    <select id="">
                         <option value="A">rastr1</option>
                         <option value="B">rastr2</option>
                         <option value="C">rastr3</option>            
@@ -243,9 +243,11 @@
                 //L.marker([text2y, text2x]).addTo(map);
                 map.panTo([text1y, text1x]);
                 var imageBounds = [[text1y, text1x],[text2y, text2x]];
-                var imageUrl = './data/export/l7b03.png';
+                var typ = document.getElementById("typ");
+                var vybranyTypRastru = typ.options[typ.selectedIndex].value;
+                //console.log(vybranyTypRastru);
+                var imageUrl = './data/export/'+vybranyTypRastru+'.png';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
-                console.log(rastrSnimek=='');
                 if (rastrSnimek==''){
                     var overlays = {
                         "Tilovaný rastr": rastrvrstva,
@@ -253,6 +255,7 @@
                     }
                 }
             }
+            //napsat tlačítko které po stisknutí udělá map.removeLayer(rastrSnimek)
     </script>
     <script>
         $("#filterTable").click(function(){
