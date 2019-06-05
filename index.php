@@ -58,7 +58,7 @@
                     <div class="btn-group-vertical">
                     <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block" onclick="klik()">ZOBRAZIT V MAPĚ</button>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
 					<hr>
                     </div>     
                   </div>
@@ -228,7 +228,8 @@
                 
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
-            function getBound(first, third){
+            
+			function getBound(first, third){
                 var text1x = first[0], 
                 text1y = first[1],
                 text2x = third[0],    
@@ -256,6 +257,7 @@
                 }
             }
             //napsat tlačítko které po stisknutí udělá map.removeLayer(rastrSnimek)
+            //./data/export/
     </script>
     <script>
         $("#filterTable").click(function(){
