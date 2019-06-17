@@ -41,24 +41,42 @@
             <div class="sidebar-content">
               <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Rastrová data <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                  <div class="col-sm-12">
-                    <h5><strong>DB RASTR</strong></h5>
-                    <select id="typ">
+                  <div class="col-sm-6">
+                    <h5><strong>Metadata rastru</strong></h5>
+                    <select id="">
                         <option name="inputrastr" value="l7b04">l7b04</option>
                         <option name="inputrastr" value="l7b05">l7b05</option>
                         <option name="inputrastr" value="l7b03">l7b03</option>            
                     </select>
-          
-					<hr>
-                          
-                   
-        
+            		<hr>
+				  </div>
+				  
+				  <div class="col-sm-6">
+                    <h5><strong>Konverze rastru</strong></h5>
+                    <select id="export">
+                        <option name="inputrastr" value="l7b04">l7b04</option>
+                        <option name="inputrastr" value="l7b05">l7b05</option>
+                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                    </select>
+            		<hr>
+                  </div>
+				  <div class="col-sm-6">
+                    <div class="btn-group-vertical">
+                    <button id="worktable" class="btn btn-primary btn-sm btn-block">NAČÍST DO PAMĚTI</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">SMAZAT Z PAMĚTI</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">POTVRZENÍ ZMĚN</button>
+				                
+					
+                    <hr>
+                    </div>     
                   </div>
                   <div class="col-sm-6">
                     <div class="btn-group-vertical">
                     <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HISTOGRAM</button>
+					<button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 16-bit</button>
 					<hr>
                     </div>     
                   </div>
@@ -67,24 +85,64 @@
 						alert("Zobrazení");
 					}
 					</script>
+					
+				  
+                  
+				  <script>
+					$("#export1").click(function(){
+						$.ajax({
+							url:'export.php',
+							type:'POST',
+							data:{
+								typ: $("#export").val(),
+								},
+								success: function(response){
+									console.log(response);
+									//$("#bound").html(response);
+									}
+							});
+						});
+					</script>
+				  <div class="col-sm-6">
+                    <h5><strong>Zobrazení rastru</strong></h5>
+                    <select id="typ">
+                        <option name="inputrastr" value="l7b04">l7b04</option>
+                        <option name="inputrastr" value="l7b05">l7b05</option>
+                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                    </select>
+            		<hr>
+                  </div>
+				  <div class="col-sm-6">
+                    <h5><strong>Zobrazení indexu</strong></h5>
+                    <select id="">
+                        <option name="inputrastr" value="l7b04">l7b04</option>
+                        <option name="inputrastr" value="l7b05">l7b05</option>
+                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                    </select>
+            		<hr>
+                  </div>
                   <div class="col-sm-6">
                     <div class="btn-group-vertical">
-                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 16-bit</button>
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HISTOGRAM</button>
-                    <hr>
+                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">NAČÍST DO MAPY</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT Z MAPY</button>
+					<hr>
                     </div>     
                   </div>
-				  <div class="col-sm-12">
-                    <h5><strong>RASTR</strong></h5>
-                    <select id="">
-                        <option value="A">rastr1</option>
-                        <option value="B">rastr2</option>
-                                    
-                    </select><br>
-					<button id="" class="btn btn-primary btn-sm btn-block">PŘEVOD HEX2IMAGE</button>
+				  <div class="col-sm-6">
+                    <div class="btn-group-vertical">
+                    <button id="" class="btn btn-primary btn-sm btn-block">NAČÍST DO MAPY</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT Z MAPY</button>
+					<hr>
+                    </div>     
                   </div>
-				  <hr>
+				  <script>
+					function klik() {
+						alert("Zobrazení");
+					}
+					</script>
+                  <div class="col-sm-12">
+                    <h5><strong>Výpočet vegetačního indexu</strong></h5>
+				  </div>
                   <div class="col-sm-6"><br>
                     <h5><strong>PÁSMO 1</strong></h5>
                     <select id="">
@@ -101,19 +159,24 @@
                         <option value="C">rastr3</option>            
                     </select>    
                   </div>
-                  <div class="col-sm-6"><br>
+                  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU NDVI</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU NDMI</button>
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEXU SAVI</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">NDVI</button>
                     <hr>
                     </div>     
                   </div>
-                  <div class="col-sm-6"><br>
+				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">EXPORT DO ÚLOŽIŠTĚ</button>
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    
+                    <button id="" class="btn btn-primary btn-sm btn-block">NDMI</button>
+                    
+                    <hr>
+                    </div>     
+                  </div>
+				  <div class="col-sm-4"><br>
+                    <div class="btn-group-vertical">
+                    
+                    <button id="" class="btn btn-primary btn-sm btn-block">SAVI</button>
                     <hr>
                     </div>     
                   </div>
@@ -247,7 +310,7 @@
                 var typ = document.getElementById("typ");
                 var vybranyTypRastru = typ.options[typ.selectedIndex].value;
                 //console.log(vybranyTypRastru);
-                var imageUrl = './data/export/'+vybranyTypRastru+'.png';
+                var imageUrl = './data/export/'+vybranyTypRastru+'.jpg';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
                 if (rastrSnimek==''){
                     var overlays = {
@@ -300,5 +363,20 @@
           getBound(firstA, third);
         }
     </script>
+	<script>
+		$("#worktable").click(function(){
+		  $.ajax({
+			url:'export.php',
+			type:'POST',
+			data:{
+                export:$("#export").val(),
+                },
+            success: function(){
+				alert("tabulka byla vytvořena");
+								}
+							});
+						});
+	</script>
+	
   </body>
 </html>
