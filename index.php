@@ -65,44 +65,17 @@
                     <button id="worktable" class="btn btn-primary btn-sm btn-block">NAČÍST DO PAMĚTI</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
 					<button id="" class="btn btn-primary btn-sm btn-block">SMAZAT Z PAMĚTI</button>
-					<button id="" class="btn btn-primary btn-sm btn-block">POTVRZENÍ ZMĚN</button>
-				                
-					
-                    <hr>
+		            <hr>
                     </div>     
                   </div>
                   <div class="col-sm-6">
                     <div class="btn-group-vertical">
                     <button id="Metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HISTOGRAM</button>
-					<button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
+                    <button id="Metadata" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 16-bit</button>
 					<hr>
                     </div>     
                   </div>
-				  <script>
-					function klik() {
-						alert("Zobrazení");
-					}
-					</script>
-					
-				  
-                  
-				  <script>
-					$("#export1").click(function(){
-						$.ajax({
-							url:'export.php',
-							type:'POST',
-							data:{
-								typ: $("#export").val(),
-								},
-								success: function(response){
-									console.log(response);
-									//$("#bound").html(response);
-									}
-							});
-						});
-					</script>
 				  <div class="col-sm-6">
                     <h5><strong>Zobrazení rastru</strong></h5>
                     <select id="typ">
@@ -366,7 +339,7 @@
 	<script>
 		$("#worktable").click(function(){
 		  $.ajax({
-			url:'export.php',
+			url:'export_rastr.php',
 			type:'POST',
 			data:{
                 export:$("#export").val(),
