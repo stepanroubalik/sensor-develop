@@ -9,12 +9,14 @@
     <meta name='robots' content='all'>
     <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge'> -->
     <!--leaflet & jquery-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" 
+	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+	crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!--Bootstrap a css soubory-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css">
     <!--Zoomhome plugin-->
     <link rel="stylesheet" href="./zoomhome/dist/leaflet.zoomhome.css"/>
@@ -63,7 +65,7 @@
 				  <div class="col-sm-6">
                     <div class="btn-group-vertical">
                     <button id="worktable" class="btn btn-primary btn-sm btn-block">NAČÍST DO PAMĚTI</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
+                    <button id="save" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
 					<button id="" class="btn btn-primary btn-sm btn-block">SMAZAT Z PAMĚTI</button>
 		            <hr>
                     </div>     
@@ -79,9 +81,9 @@
 				  <div class="col-sm-6">
                     <h5><strong>Zobrazení rastru</strong></h5>
                     <select id="typ">
-                        <option name="inputrastr" value="l7b04">l7b04</option>
-                        <option name="inputrastr" value="l7b05">l7b05</option>
-                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                        <option name="inputrastr" value="l7b04">landsat 7 NIR</option>
+                        <option name="inputrastr" value="l7b05">landsat 7 SWIR</option>
+                        <option name="inputrastr" value="l7b03">landasat 7 RED</option>            
                     </select>
             		<hr>
                   </div>
@@ -283,7 +285,7 @@
                 var typ = document.getElementById("typ");
                 var vybranyTypRastru = typ.options[typ.selectedIndex].value;
                 //console.log(vybranyTypRastru);
-                var imageUrl = './data/export/'+vybranyTypRastru+'.jpg';
+                var imageUrl = './data/'+vybranyTypRastru+'.jpg';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
                 if (rastrSnimek==''){
                     var overlays = {
@@ -346,6 +348,20 @@
                 },
             success: function(){
 				alert("tabulka byla vytvořena");
+								}
+							});
+						});
+	</script>
+	<script>
+		$("#save").click(function(){
+		  $.ajax({
+			url:'export_rastrfile.php',
+			type:'POST',
+			data:{
+                export: $("#export").val(),
+                },
+            success: function(){
+				alert("soubor byl vytvořen");
 								}
 							});
 						});

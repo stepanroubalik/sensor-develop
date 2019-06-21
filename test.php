@@ -24,12 +24,23 @@
     <script src="./js/leaflet-sidebar.js"></script>
   </head>
   <body>
+                  
 	<div class="col-sm-6">
-      <h5><strong>Konverze rastru</strong></h5>
-        <select id="export">
-          <option name="inputrastr" value="l7b04">l7b04</option>
-          <option name="inputrastr" value="l7b05">l7b05</option>
-          <option name="inputrastr" value="l7b03">l7b03</option>            
+                    <h5><strong>Konverze rastru</strong></h5>
+                    <select id="export">
+                        <option name="inputrastr" value="l7b04">l7b04</option>
+                        <option name="inputrastr" value="l7b05">l7b05</option>
+                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                    </select>
+            		<hr>
+                  </div>
+	
+	
+	<div class="col-sm-6">
+      <h5><strong>Vyber tabulku</strong></h5>
+        <select id="tmp">
+          <option name="inputrastr" value="tmp_out">rastr</option>
+                  
         </select>
         <hr>
     </div>
@@ -45,13 +56,28 @@
 	<script>
 		$("#worktable").click(function(){
 		  $.ajax({
-			url:'export.php',
+			url:'export_rastr.php',
 			type:'POST',
 			data:{
                 export:$("#export").val(),
                 },
             success: function(){
 				alert("tabulka byla vytvořena");
+								}
+							});
+						});
+	</script>
+	
+	<script>
+		$("#createfile").click(function(){
+		  $.ajax({
+			url:'export_rastrfile.php',
+			type:'POST',
+			data:{
+                tmp:$("#tmp").val(),
+                },
+            success: function(){
+				alert("rastr byl exportován");
 								}
 							});
 						});
