@@ -256,6 +256,19 @@
             id: 'mapbox.streets'
             }).addTo(map);
 
+			$("#displaysenzor").click(function(){
+				$.ajax({
+                url:'query_sensor_data.php',
+                type:'POST',
+                data:{
+                    senzor:$("#senzor").val(),
+					},
+                success: function(response){
+                    var querySenzor=L.geoJSON(JSON.parse(response)).addTo(map);
+                }
+            });
+        });
+
             var baseLayers = {
             "Defaultní": defaultni, 
             };
@@ -300,18 +313,7 @@
     </script>
 	
 	<script>
-	$("#displaysenzor").click(function(){
-				$.ajax({
-                url:'query_sensor_data.php',
-                type:'POST',
-                data:{
-                    senzor:$("#senzor").val(),
-					},
-                success: function(response){
-                    var querySenzor=L.geoJSON(JSON.parse(response))addTo(map);
-                }
-            });
-        });
+	
 	</script>
     <script>
         $("#filterTable").click(function(){

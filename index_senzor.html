@@ -13,7 +13,7 @@
 	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
 	crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!--Bootstrap a css soubory-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
@@ -256,6 +256,19 @@
             id: 'mapbox.streets'
             }).addTo(map);
 
+			$("#displaysenzor").click(function(){
+				$.ajax({
+                url:'query_sensor_data.php',
+                type:'POST',
+                data:{
+                    senzor:$("#senzor").val(),
+					},
+                success: function(response){
+                    var querySenzor=L.geoJSON(JSON.parse(response)).addTo(map);
+                }
+            });
+        });
+
             var baseLayers = {
             "Defaultní": defaultni, 
             };
@@ -300,18 +313,7 @@
     </script>
 	
 	<script>
-	$("#displaysenzor").click(function(){
-				$.ajax({
-                url:'query_sensor_data.php',
-                type:'POST',
-                data:{
-                    senzor:$("#senzor").val(),
-					},
-                success: function(response){
-                    var querySenzor=L.geoJSON(JSON.parse(response))addTo(map);
-                }
-            });
-        });
+	
 	</script>
     <script>
         $("#filterTable").click(function(){

@@ -1,9 +1,13 @@
 <?php
-    $ls=$_POST['datum'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=sensorapp;', 'postgres', 'diplomka2019');
-    $sql = $db->prepare("SELECT id, ST_AsGeoJSON(ST_Transform(geom,4326),5) as geom, datum, vlhkost, typ FROM sensortest WHERE datum = :ls");
-    $params = ["ls"=>$ls];
-    $sql->execute($params);
+    $senzor=$_POST['senzor'];
+    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+    $sql = $db->prepare("SELECT id, ST_AsGeoJSON(ST_Transform(geom,4326),5) as geom 
+	FROM $senzor");
+	$sql->execute();
+	
+	
+    //$params = ["ls"=>$ls];
+    
     
     $features=[];
     while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
