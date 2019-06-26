@@ -3,11 +3,12 @@
 	$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
 	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\l7b04.jpg')
      FROM $tmp;");
-	
+	$createFile->execute();
+
 	//$rastrname = $_POST['rastrname'];
 	//$createFile1 = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\$rastrname.jpg')
      //FROM tmp_out;");
-    $createFile->execute();
+    
 	//echo ($createFile)
 	
 	
