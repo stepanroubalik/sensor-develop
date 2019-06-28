@@ -48,11 +48,58 @@
       <div class="btn-group-vertical">
         <button id="worktable" class="btn btn-primary btn-sm btn-block">NAČÍST DO PAMĚTI</button>
         <button id="createfile" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
-		<button id="clear" class="btn btn-primary btn-sm btn-block">SMAZAT Z PAMĚTI</button>
-		<button id="commit" class="btn btn-primary btn-sm btn-block">POTVRZENÍ ZMĚN</button>
 		<hr>
       </div>     
     </div>
+	
+	<div class="col-sm-4">
+      <h5><strong>Pásmo 1</strong></h5>
+        <select id="pasmo1">
+          <option value="l7b03">landsat 7 red</option>
+		  <option value="l8b03">landsat 8 red</option>
+		  <option value="s2b04">sentinel 2 red</option>
+                  
+        </select>
+        <hr>
+    </div>
+	<div class="col-sm-4">
+      <h5><strong>Pásmo 2</strong></h5>
+        <select id="pasmo2">
+          <option value="l7b04">landsat 7 nir</option>
+		  <option value="l8b04">landsat 8 nir</option>
+		  <option value="s2b04">sentinel 2 nir</option>
+                  
+        </select>
+        <hr>
+    </div>
+	
+	
+	<div class="col-sm-4">
+      <div class="btn-group-vertical">
+        <button id="ndvi" class="btn btn-primary btn-sm btn-block">Výpočet</button>
+        
+      </div>     
+    </div>
+	
+	
+	
+	
+	<script>
+		$("#ndvi").click(function(){
+		  $.ajax({
+			url:'vegetacni_index.php',
+			type:'POST',
+			data:{
+                pasmo1:$("#pasmo1").val(), 
+				pasmo2:$("#pasmo2").val(),
+                },
+            success: function(){
+				alert("index byl vypočítán");
+								}
+							});
+						});
+	</script>
+	
 	<script>
 		$("#worktable").click(function(){
 		  $.ajax({

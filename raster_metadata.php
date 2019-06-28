@@ -1,8 +1,15 @@
 <?php
-    $rs=$_POST['typ'];
+    $meta=$_POST['meta'];
     $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka', 'postgres', 'sr');
-    $sql = $db->prepare("SELECT rid As rid, ST_Width(rast) As w, ST_Height(rast) As h, round(ST_PixelWidth(rast)::numeric,4) AS pw, round(ST_PixelHeight(rast)::numeric,4) As ph, ST_SRID(rast) AS srid, T_BandPixelType(rast,2) AS bt
-    FROM $rs");
+    $sql = $db->prepare("SELECT
+				rid As r,
+				ST_Width(rast) As w,
+				ST_Height(rast) As h,
+				round(ST_PixelWidth(rast)::numeric,0) AS pw,
+				round(ST_PixelHeight(rast)::numeric,0) As ph,
+				ST_SRID(rast) AS srid,
+				ST_BandPixelType(rast,2) AS bt
+				FROM $meta");
     $sql->execute();
 
     echo "<table id= 'dtHorizontalVerticalExample' class= 'table table-striped table-bordered table-sm' cellspacing='0', width= '100%'>";

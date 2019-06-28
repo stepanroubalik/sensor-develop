@@ -1,7 +1,7 @@
 <?php
     $ls=$_POST['datum'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
-    $sql = $db->prepare("SELECT id, datum, vlhkost, typ FROM sensortest WHERE datum = :ls");
+    $db = new PDO('pgsql:host=localhost;port=5432;dbname=spu;', 'postgres', 'sr');
+    $sql = $db->prepare("SELECT id_senzor, nazev_senzor, FROM sensortest WHERE datum = :ls");
     $params = ["ls"=>$ls];
     $sql->execute($params);
     
