@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="./zoomhome/dist/leaflet.zoomhome.css"/>
     <script src="./zoomhome/dist/leaflet.zoomhome.min.js"></script>
     <!--sidebar style-->
-    <link rel="stylesheet" href="./css/leaflet-sidebar.css" />  
+    <link rel="stylesheet" href="./css/leaflet-sidebar.css" /> 
+	<link rel="stylesheet" href="./css/Control.Coordinates.css" />
     <script src="./js/leaflet-sidebar.js"></script>
+	<script src="./js/Control.Coordinates.js"></script>
   </head>
     <body>
         <div id="sidebar" class="sidebar collapsed">
@@ -293,9 +295,17 @@
 
             var overlays = {
             };
-                
+			
+					
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
+			
+			var c = new L.Control.Coordinates();
+			c.addTo(map);
+
+			map.on('click', function(e) {
+			c.setCoordinates(e);
+			});
             
 			function getBound(first, third){
                 var text1x = first[0], 
