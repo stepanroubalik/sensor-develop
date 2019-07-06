@@ -312,19 +312,13 @@
                 text1y = first[1],
                 text2x = third[0],    
                 text2y = third[1];
-                map.panTo([text1y, text1x]);
+				map.panTo([text1y, text1x]);
                 var imageBounds = [[text1y, text1x],[text2y, text2x]];
                 var typ = document.getElementById("typ");
                 var vybranyTypRastru = typ.options[typ.selectedIndex].value;
                 var imageUrl = './data/'+vybranyTypRastru+'.jpg';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
-                if (rastrSnimek==''){
-                    var overlays = {
-                        "Tilovaný rastr": rastrvrstva,
-                        "rastrovy snimek": rastrSnimek
-                    }
                 }
-            }
             //napsat tlačítko které po stisknutí udělá map.removeLayer(rastrSnimek)
             //./data/export/
 			//var text1x = $('#text1x').val(), 
@@ -367,7 +361,6 @@
                 },
                 success: function(response){
                     //console.log(response);
-                    //$("#bound").html(response);
                     myParser(response);
                 }
             });
@@ -382,6 +375,8 @@
 		  //"prvni souřadnice = " + firstA[0] + " a druhá = " + 
 		  //firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
           getBound(firstA, third);
+		  //console.log(firstA, first)
+		  //console.log(third)
         }
     </script>
 	<script>
