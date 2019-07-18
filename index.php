@@ -57,8 +57,8 @@
 				  
 				  <div class="col-sm-6">
                     <h5><strong>Senzor data</strong></h5>
-                    <select id="export">
-                        <option name="" value="">SRA 11</option>
+                    <select id="sens">
+                        <option name="" value="sens">enviro</option>
                         <option name="" value="">SRA 21</option>
                         <option name="" value="">SRA 31</option>            
                     </select><br>
@@ -78,7 +78,7 @@
                     <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT TABULKU</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT TABULKU</button>
 					<button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT Z MAPY</button>
+                    <button id="deleteraster" class="btn btn-primary btn-sm btn-block">ODSTRANIT Z MAPY</button>
 					<hr>
                     </div>     
                   </div>
@@ -318,7 +318,7 @@
                 var vybranyTypRastru = typ.options[typ.selectedIndex].value;
                 var imageUrl = './data/'+vybranyTypRastru+'.jpg';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
-                }
+				}
             //napsat tlačítko které po stisknutí udělá map.removeLayer(rastrSnimek)
             //./data/export/
 			//var text1x = $('#text1x').val(), 
@@ -330,8 +330,22 @@
                 //L.marker([text1y, text1x]).addTo(map);
                 //L.marker([text2y, text2x]).addTo(map);
 				//console.log(vybranyTypRastru);
+				
+			function getSenzorCoord(res){
+				var text1x = res[0],
+				text1y = res[1];
+				map.panTo([text1x, text1y]);
+				L.marker([text1x, text1y]).addTo(map).bindPopup("rasterTable").openPopup();
+			}
 			
-			
+			//function reloadImage(e){
+				//if (map.hasLayer(rastrSnimek)) {
+					//map.removeLayer(rastrSnimek);
+				//}
+				//else {
+					//rastrSnimek.addTo(map);
+				//}
+			//}	
     </script>
 	
 
@@ -360,7 +374,7 @@
                 typ: $("#typ").val(),
                 },
                 success: function(response){
-                    //console.log(response);
+                    console.log(response);
                     myParser(response);
                 }
             });
@@ -371,14 +385,19 @@
           var first = res[0].split("((");
           var firstA = first[1].split(" ");
           var third = res[2].split(" ");
-          //document.getElementById("bound").innerHTML = 
+          getBound(firstA, third);
+		  console.log(res);
+		  console.log(first);
+		  console.log(firstA);
+		  console.log(third);
+		  }
+    </script>
+	
+	<script>
+	//document.getElementById("bound").innerHTML = 
 		  //"prvni souřadnice = " + firstA[0] + " a druhá = " + 
 		  //firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
-          getBound(firstA, third);
-		  //console.log(firstA, first)
-		  //console.log(third)
-        }
-    </script>
+	</script>
 	<script>
 		$("#worktable").click(function(){
 		  $.ajax({
@@ -436,6 +455,31 @@
             });
         });
     </script>
+	<script>
+        $("#displaysenzor").click(function(){
+        $.ajax({
+            url:'query_sensor.php',
+            type:'POST',
+            data:{
+                sens: $("#sens").val(),
+                },
+                success: function(response){
+                    console.log(response);
+                    senzorParser(response);
+                }
+            });
+        });
+		
+		function senzorParser(response) {
+          var res = response.split(",");
+          //var x = res[0];
+          //var y = res[1];
+          getSenzorCoord(res);
+		  console.log(res);
+		  //console.log(x, y);
+		  
+		  }
+		</script>
 	
   </body>
 </html>
