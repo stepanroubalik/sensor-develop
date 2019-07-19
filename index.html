@@ -46,48 +46,46 @@
               <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Prohlížení dat <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                   <div class="col-sm-6">
-                    <h5><strong>Rastrová data</strong></h5>
+                    <h5><strong>Zpracování rastrů</strong></h5>
                     <select id="meta">
-                        <option name="inputrastr" value="l7b04">l7b04</option>
-                        <option name="inputrastr" value="l7b05">l7b05</option>
-                        <option name="inputrastr" value="l7b03">l7b03</option>            
+                        <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
+                        <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
+                        <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
                     </select>
             		
 				  </div>
 				  
 				  <div class="col-sm-6">
-                    <h5><strong>Senzor data</strong></h5>
+                    <h5><strong>Senzorová data</strong></h5>
                     <select id="export">
-                        <option name="" value="">SRA 11</option>
-                        <option name="" value="">SRA 21</option>
-                        <option name="" value="">SRA 31</option>            
+                        <option name="" value="">typ senzoru SRA 11</option>
+                        <option name="" value="">typ senzoru SRA 21</option>
+                        <option name="" value="">typ senzoru SRA 31</option>            
                     </select><br>
             		
                   </div>
 				  <br><div class="col-sm-6">
                     <div class="btn-group-vertical">
-                    <button id="metadata" class="btn btn-primary btn-sm btn-block">ZOBRAZIT METADATA</button>
-					<button id="" class="btn btn-primary btn-sm btn-block">TRANSFORMACE 8-bit</button>
-					<button id="worktable" class="btn btn-primary btn-sm btn-block">NAČÍST DO PAMĚTI</button>
-                    <button id="save" class="btn btn-primary btn-sm btn-block">ULOŽIT DO SOUBORU</button>
+                    <button id="metadata" class="btn btn-primary btn-sm btn-block">METADATA RASTRU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
+					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button>
 					<hr>
                     </div>     
                   </div>
                   <div class="col-sm-6">
                     <div class="btn-group-vertical">
-                    <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT TABULKU</button>
+                    <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HODNOTY</button>
                     <button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT TABULKU</button>
 					<button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
-                    <button id="" class="btn btn-primary btn-sm btn-block">test</button>
-					<hr>
+                    <hr>
                     </div>     
                   </div>
 				  <div class="col-sm-6">
                     <h5><strong>Zobrazení rastru</strong></h5>
                     <select id="typ">
-                        <option name="inputrastr" value="l7b04">landsat 7 NIR</option>
-                        <option name="inputrastr" value="l7b05">landsat 7 SWIR</option>
-                        <option name="inputrastr" value="l7b03">landasat 7 RED</option>            
+                        <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
+                        <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
+                        <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
                     </select>
             		
                   </div>
@@ -354,7 +352,7 @@
     <script>
         $("#boundingbox").click(function(){
         $.ajax({
-            url:'bound.php',
+            url:'displayRaster.php',
             type:'POST',
             data:{
                 typ: $("#typ").val(),
@@ -379,10 +377,10 @@
 		  //console.log(third)
         }
     </script>
-	<script>
-		$("#worktable").click(function(){
+	<!--<script>
+		$("#save").click(function(){
 		  $.ajax({
-			url:'export_rastr.php',
+			url:'export_raster.php',
 			type:'POST',
 			data:{
                 export:$("#export").val(),
@@ -392,14 +390,14 @@
 								}
 							});
 						});
-	</script>
+	</script>-->
 	<script>
 		$("#save").click(function(){
 		  $.ajax({
-			url:'export_rastrfile.php',
+			url:'rasterProperties.php',
 			type:'POST',
 			data:{
-                export: $("#export").val(),
+                meta: $("#meta").val(),
                 },
             success: function(){
 				alert("soubor byl vytvořen");
@@ -425,7 +423,7 @@
 	<script>
         $("#metadata").click(function(){
             $.ajax({
-                url:'raster_metadata.php',
+                url:'rasterProperties.php',
                 type:'POST',
                 data:{
                     meta: $("#meta").val(),
