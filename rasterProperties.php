@@ -35,7 +35,7 @@
 	ST_AsGDALRaster(ST_Union(rast), 'JPEG', ARRAY['QUALITY=50'])) AS loid
     FROM $tabulka;");
     $createTempTable->execute();
-	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\l7b04.jpg')
+	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\l7b05.jpg')
     FROM tmp_out;");
 	$createFile->execute();
 	
