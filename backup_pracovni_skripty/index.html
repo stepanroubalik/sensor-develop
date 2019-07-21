@@ -63,7 +63,7 @@
 				  <br><div class="col-sm-6">
                     <div class="btn-group-vertical">
                     <button id="metadata" class="btn btn-primary btn-sm btn-block">METADATA RASTRU</button>
-					<button id="transform" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
+					<button id="trasform" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
 					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button>
 					<hr>
                     </div>     
@@ -322,92 +322,8 @@
 			
     </script>
 	
-	<!--Ovládací panel pro rastry-->
-    <script>
-        $("#metadata").click(function(){
-            $.ajax({
-                url:'rasterProperties.php',
-                type:'POST',
-                data:{
-                    meta: $("#meta").val(),
-					},
-                success: function(response){
-                    $("#rasterTable").html(response);
-                }
-            });
-        });
-    </script>
-	
-	<script>
-	$("#transform").click(function(){
-	$.ajax({
-			url:'rasterProperties.php',
-			type:'POST',
-			data:{
-                meta: $("#meta").val(),
-                },
-            success: function(){
-				alert("Rastr byl převeden na barevnou hloubku 8 bitů");
-								}
-							});
-						});
-	</script>
-	
-	<script>
-		$("#save").click(function(){
-		  $.ajax({
-			url:'rasterProperties.php',
-			type:'POST',
-			data:{
-                meta: $("#meta").val(),
-                },
-            success: function(){
-				alert("soubor byl vytvořen");
-								}
-							});
-						});
-	</script>
-	
-	<script>
-        $("#boundingbox").click(function(){
-        $.ajax({
-            url:'displayRaster.php',
-            type:'POST',
-            data:{
-                typ: $("#typ").val(),
-                },
-                success: function(response){
-                    myParser(response);
-                }
-            });
-        });
 
-        function myParser(response) {
-          var res = response.split(",");
-          var first = res[0].split("((");
-          var firstA = first[1].split(" ");
-          var third = res[2].split(" ");
-          getBound(firstA, third);
-		  }
-    </script>
-	
-	<script>
-		$("#ndvi").click(function(){
-		  $.ajax({
-			url:'vegetacni_index.php',
-			type:'POST',
-			data:{
-                pasmo1:$("#pasmo1").val(), 
-				pasmo2:$("#pasmo2").val(),
-                },
-            success: function(){
-				alert("index byl vypočítán");
-								}
-							});
-						});
-	</script>
-	
-	<script>
+    <script>
         $("#filterTable").click(function(){
             $.ajax({
                 url:'query_sensor_table.php',
@@ -423,5 +339,91 @@
             });
         });
     </script>
+    <script>
+        $("#boundingbox").click(function(){
+        $.ajax({
+            url:'displayRaster.php',
+            type:'POST',
+            data:{
+                typ: $("#typ").val(),
+                },
+                success: function(response){
+                    //console.log(response);
+                    myParser(response);
+                }
+            });
+        });
+
+        function myParser(response) {
+          var res = response.split(",");
+          var first = res[0].split("((");
+          var firstA = first[1].split(" ");
+          var third = res[2].split(" ");
+          //document.getElementById("bound").innerHTML = 
+		  //"prvni souřadnice = " + firstA[0] + " a druhá = " + 
+		  //firstA[1] + " a třetí = " + third[0] + " a čtvrtá = " + third[1];
+          getBound(firstA, third);
+		  //console.log(firstA, first)
+		  //console.log(third)
+        }
+    </script>
+	<!--<script>
+		$("#save").click(function(){
+		  $.ajax({
+			url:'export_raster.php',
+			type:'POST',
+			data:{
+                export:$("#export").val(),
+                },
+            success: function(){
+				alert("tabulka byla vytvořena");
+								}
+							});
+						});
+	</script>-->
+	<script>
+		$("#save").click(function(){
+		  $.ajax({
+			url:'rasterProperties.php',
+			type:'POST',
+			data:{
+                meta: $("#meta").val(),
+                },
+            success: function(){
+				alert("soubor byl vytvořen");
+								}
+							});
+						});
+	</script>
+	<script>
+		$("#ndvi").click(function(){
+		  $.ajax({
+			url:'vegetacni_index.php',
+			type:'POST',
+			data:{
+                pasmo1:$("#pasmo1").val(), 
+				pasmo2:$("#pasmo2").val(),
+                },
+            success: function(){
+				alert("index byl vypočítán");
+								}
+							});
+						});
+	</script>
+	<script>
+        $("#metadata").click(function(){
+            $.ajax({
+                url:'rasterProperties.php',
+                type:'POST',
+                data:{
+                    meta: $("#meta").val(),
+					},
+                success: function(response){
+                    $("#rasterTable").html(response);
+                }
+            });
+        });
+    </script>
+	
   </body>
 </html>
