@@ -34,7 +34,7 @@
                 <ul role="tablist">
                     <li><a href="#home" role="tab"><i class="fa fa-eye"></i></a></li>
                     <li><a href="#profile" role="tab"><i class="fa fa-cogs"></i></a></li>
-                    <!--<li><a href="#messages" role="tab"><i class="fa fa-wrench"></i></a></li>-->
+                    <li><a href="#messages" role="tab"><i class="fa fa-cogs"></i></a></li>
                 </ul>
                 <ul role="tablist">
                     <li><a href="#settings" role="tab"><i class="fa fa-question-circle"></i></a></li>
@@ -54,7 +54,7 @@
             	  </div>
 				  <div class="col-sm-6">
                     <h5><strong>Senzorová data</strong></h5>
-                    <select id="export">
+                    <select id="">
                         <option name="" value="">typ senzoru SRA 11</option>
                         <option name="" value="">typ senzoru SRA 21</option>
                         <option name="" value="">typ senzoru SRA 31</option>            
@@ -107,9 +107,9 @@
 				  <div id="rasterTable"></div>
 				</div>
               <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Výpočty nad daty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h1 class="sidebar-header">Výpočet vegetačních indexů<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <div class="col-sm-12">
-                  <h5><strong>Výpočet vegetačního indexu NDVI</strong></h5>
+                  <br><h4><strong>NDVI</strong></h4>
 				</div>
                   <div class="col-sm-4"><br>
                     <h5><strong>RED PÁSMO</strong></h5>
@@ -137,12 +137,12 @@
                   </div>
 				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VYPOČÍTAT</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">PŘIDAT INDEX</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
@@ -151,7 +151,7 @@
                     </div>     
                   </div>
 				  <div class="col-sm-12">
-                    <h5><strong>Výpočet vegetačního indexu NDMI</strong></h5>
+                    <br><h4><strong>NDMI</strong></h4>
 				  </div>
                   <div class="col-sm-4"><br>
                     <h5><strong>RED PÁSMO</strong></h5>
@@ -180,12 +180,12 @@
 				  
                   <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VYPOČÍTAT</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">PŘIDAT INDEX</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
@@ -195,9 +195,9 @@
                   </div>
 				  
 				  <div class="col-sm-12">
-                    <h5><strong>Výpočet vegetačního indexu SAVI</strong></h5>
+                    <br><h4><strong>SAVI</strong></h4>
 				  </div>
-                  <div class="col-sm-4"><br>
+				  <div class="col-sm-4"><br>
                     <h5><strong>RED PÁSMO</strong></h5>
                     <select id="">
                         <option value="A">LANDSAT 7</option>
@@ -224,21 +224,39 @@
 				  
                   <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VYPOČÍTAT</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">PŘIDAT INDEX</button>
+                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
                     </div>     
                   </div>
 				  <div class="col-sm-4"><br>
                     <div class="btn-group-vertical">
-                    <!--<button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT</button>-->
                     </div>     
                   </div>
 			    </div>
-              <div class="sidebar-pane" id="messages"></div>
+              <div class="sidebar-pane" id="messages">
+			    <h1 class="sidebar-header">Korekční výpočet pomocí dat ze senzorů<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <div class="col-sm-12">
+                  <h4><strong>Data ze senzoru</strong></h4>
+				</div>
+				<div class="col-sm-6">
+                    <select id="">
+                        <option name="" value="">typ senzoru SRA 11</option>
+                        <option name="" value="">typ senzoru SRA 21</option>
+                        <option name="" value="">typ senzoru SRA 31</option>            
+                    </select><br>
+            	</div>
+				<div class="col-sm-6">
+                    <div class="btn-group-vertical">
+                    <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HODNOTY</button>
+                    <button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <hr>
+                    </div>     
+                  </div>
+			  </div>
 			  <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Nápověda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               </div>
