@@ -43,45 +43,35 @@
             <!-- Tab panes -->
             <div class="sidebar-content">
               <div class="sidebar-pane" id="home">
-                <h1 class="sidebar-header">Prohlížení dat <span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h1 class="sidebar-header">Rastrová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                   <div class="col-sm-6">
-                    <h5><strong>Zpracování rastrů</strong></h5>
+                    <h5><strong>Operace s rastrem</strong></h5>
                     <select id="meta">
                         <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
                         <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
                         <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
                     </select>
-					<div class="btn-group-vertical">
-                    <button id="metadata" class="btn btn-primary btn-sm btn-block">METADATA RASTRU</button>
-					<button id="transform" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
-					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button>
-					<hr>
-                    </div> 
-            	  </div>
-				  <div class="col-sm-6">
-                    <h5><strong>Zobrazení rastru</strong></h5>
+					<br><br><br>
+					<h5><strong>Zobrazení rastru</strong></h5>
                     <select id="typ">
                         <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
                         <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
                         <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
                     </select>
-					<select id="">
-                        <option name="inputrastr" value="l7b04">S2 NDVI index</option>
-                        <option name="inputrastr" value="l7b05">L7 NDVI index</option>
-                        <option name="inputrastr" value="l7b03">L8 NDVI index</option>            
-                    </select>
-            	  </div>
+				  </div>
 				  <div class="col-sm-6">
                     <div class="btn-group-vertical">
-                    <button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT RASTR</button>
-					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
+                    <br><br><button id="metadata" class="btn btn-primary btn-sm btn-block">METADATA RASTRU</button>
+					<button id="transform" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
+					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button>
+					<button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT RASTR</button>
 					<hr>
-                    </div>     
-                  </div>
+                    </div> 
+            	  </div>
 				  <div id="rasterTable"></div>
 				</div>
               <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Výpočet vegetačních indexů<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h1 class="sidebar-header">Senzorová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <div class="col-sm-12">
                   <br><h4><strong>NDVI</strong></h4>
 				</div>
@@ -212,7 +202,7 @@
                   </div>
 			    </div>
               <div class="sidebar-pane" id="messages">
-			    <h1 class="sidebar-header">Korekční výpočet pomocí dat ze senzorů<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+			    <h1 class="sidebar-header">Korekční výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h4><strong>Statistické výpočty</strong></h4>
 				<div class="col-sm-6">
                     <h5><strong>Lokalizace</strong></h5>
