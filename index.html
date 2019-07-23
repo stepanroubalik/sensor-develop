@@ -213,23 +213,44 @@
 			    </div>
               <div class="sidebar-pane" id="messages">
 			    <h1 class="sidebar-header">Korekční výpočet pomocí dat ze senzorů<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                <div class="col-sm-12">
-                  <h4><strong>Data ze senzoru</strong></h4>
+                <h4><strong>Statistické výpočty</strong></h4>
+				<div class="col-sm-6">
+                    <h5><strong>Lokalizace</strong></h5>
+					<select id="sensorType">
+                        <option value="envirodata">senzor enviro</option>
+                        <option value="">senzor libelium</option>
+                        <option value="">senzor sigfox</option>            
+                    </select><br>
 				</div>
 				<div class="col-sm-6">
-                    <select id="">
-                        <option name="" value="">typ senzoru SRA 11</option>
-                        <option name="" value="">typ senzoru SRA 21</option>
-                        <option name="" value="">typ senzoru SRA 31</option>            
+                    <h5><strong>Časový extent</strong></h5>
+					<select id="datetime">
+                        <option value="2016-06-13">2016-06-13</option>
+                        <option value="2016-06-14">2016-06-14</option>
+                        <option value="2016-06-15">2016-06-15</option>            
                     </select><br>
-            	</div>
+				</div>
 				<div class="col-sm-6">
                     <div class="btn-group-vertical">
-                    <button id="filterTable" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HODNOTY</button>
-                    <button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+                    <br><button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
+					<button id="filterSensorTable" class="btn btn-primary btn-sm btn-block">ATRIBUTOVÁ TABULKA</button>
                     <hr>
                     </div>     
-                  </div>
+                </div>
+				<div class="col-sm-6">
+                    <div class="btn-group-vertical">
+                    <br>
+					<button id="calculateMean" class="btn btn-primary btn-sm btn-block">POČÍTAT DENNÍ PRŮMĚR</button>
+					<button id="calculateMedian" class="btn btn-primary btn-sm btn-block">POČÍTAT DENNÍ MEDIÁN</button>
+                    <hr>
+                    </div>
+				</div>
+				<div id="displayMedianTable"></div>
+				<h4><strong>Tvorba korekčního rastru</strong></h4>
+				
+				<h4><strong>Korekční výpočet</strong></h4>
+				
+				
 			  </div>
 			  <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Nápověda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -237,9 +258,7 @@
             </div>
         </div>
         <div id="mapdiv"></div>
-        <div id="resultTable"></div>
-		
-		
+		<div id="displaySensorTable"></div>
         
         <!--Scripty-->
         <script>
@@ -329,6 +348,39 @@
             });
         });
     </script>
+	
+	<script>
+        $("#filterSensorTable").click(function(){
+            $.ajax({
+                url:'sensorData.php',
+                type:'POST',
+                data:{
+                    sensorType: $("#sensorType").val(),
+					datetime: $("#datetime").val(),
+					},
+                success: function(response){
+                    $("#displaySensorTable").html(response);
+                }
+            });
+        });
+    </script>
+	<script>
+        $("#calculateMedian").click(function(){
+            $.ajax({
+                url:'sensorDataStatistics.php',
+                type:'POST',
+                data:{
+                    sensorType: $("#sensorType").val(),
+					datetime: $("#datetime").val(),
+					},
+                success: function(response){
+                    $("#displayMedianTable").html(response);
+                }
+            });
+        });
+    </script>
+	
+	
 	
 	<script>
 	$("#transform").click(function(){
