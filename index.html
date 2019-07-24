@@ -35,7 +35,7 @@
                     <li><a href="#home" role="tab"><i class="fa fa-eye"></i></a></li>
                     <li><a href="#profile" role="tab"><i class="fa fa-cogs"></i></a></li>
                     <li><a href="#messages" role="tab"><i class="fa fa-cogs"></i></a></li>
-                </ul>
+				</ul>
                 <ul role="tablist">
                     <li><a href="#settings" role="tab"><i class="fa fa-question-circle"></i></a></li>
                 </ul>
@@ -44,212 +44,211 @@
             <div class="sidebar-content">
               <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">Rastrová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                  <div class="col-sm-6">
+                  <h4><strong>Základní práce s rastrem</strong></h4>
+				  <div class="col-sm-6">
                     <h5><strong>Operace s rastrem</strong></h5>
-                    <select id="meta">
+                    <select id="meta" class="form-control">
                         <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
                         <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
                         <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
                     </select>
-					<br><br><br>
-					<h5><strong>Zobrazení rastru</strong></h5>
-                    <select id="typ">
+					
+					<br><br><h5><strong>Pásmo rastru</strong></h5>
+                    <select id="typ" class="form-control">
                         <option name="inputrastr" value="l7b04">L7 - NIR pásmo</option>
                         <option name="inputrastr" value="l7b05">L7 - SWIR pásmo</option>
                         <option name="inputrastr" value="l7b03">L7 - RED pásmo</option>            
+                    </select>
+					<h5><strong>Vegetační index</strong></h5>
+					<select id="" class="form-control">
+                        <option name="inputrastr" value="l7b04">NDVI</option>
+                        <option name="inputrastr" value="l7b05">NDMI</option>
+                        <option name="inputrastr" value="l7b03">SAVI</option>            
                     </select>
 				  </div>
 				  <div class="col-sm-6">
                     <div class="btn-group-vertical">
                     <br><br><button id="metadata" class="btn btn-primary btn-sm btn-block">METADATA RASTRU</button>
 					<button id="transform" class="btn btn-primary btn-sm btn-block">PŘEVÉST NA 8-bit</button>
-					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button>
-					<button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT RASTR</button>
+					<button id="save" class="btn btn-primary btn-sm btn-block">GENEROVAT RASTR</button><br>
+					<button id="boundingbox" class="btn btn-primary btn-sm btn-block">ZOBRAZIT RASTR</button><br><br>
+					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
 					<hr>
                     </div> 
             	  </div>
 				  <div id="rasterTable"></div>
-				</div>
-              <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Senzorová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                <div class="col-sm-12">
-                  <br><h4><strong>NDVI</strong></h4>
-				</div>
-                  <div class="col-sm-4"><br>
-                    <h5><strong>RED PÁSMO</strong></h5>
+				  <h4><strong>Výpočet vegetačního indexu</strong></h4>
+                  <div class="col-sm-6"><br>
+                    <h5><strong>NDVI RED PÁSMO</strong></h5>
+					<h5><strong>NDVI NIR PÁSMO</strong></h5>
+					<h5><strong>NDVI VÝSLEDEK</strong></h5>
+				  </div>
+				  <div class="col-sm-6"><br>
                     <select id="pasmo1">
                         <option value="l7b03">LANDSAT 7</option>
                         <option value="l8b03">LANDSAT 8</option>
                         <option value="s2b04">SENTINEL 2</option>            
-                    </select>    
-                  </div>
-                  <div class="col-sm-4"><br>
-                    <h5><strong>NIR PÁSMO</strong></h5>
-                    <select id="">
+                    </select><br>
+					<br><select id="pasmo2">
                         <option value="l7b04">LANDSAT 7</option>
                         <option value="l8b04">LANDSAT 8</option>
                         <option value="s2b04">SENTINEL 2</option>            
-                    </select>    
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <h5><strong>VÝSLEDEK</strong></h5>
-                    <select id="ndvi">
+                    </select><br>
+					<br><select id="ndvi">
                         <option value="">NDVI L7</option>
                         <option value="">NDVI L8</option>
                         <option value="">NDVI S2</option>            
-                    </select>    
+                    </select>
+					<div class="btn-group-vertical">
+                    <br><button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET NDVI IDX</button><hr>
+                    </div>
                   </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <!--<button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT</button>-->
-                    </div>     
-                  </div>
-				  <div class="col-sm-12">
-                    <br><h4><strong>NDMI</strong></h4>
+                  <div class="col-sm-6"><br>
+                    <h5><strong>NDMI - RED PÁSMO</strong></h5>
+					<h5><strong>NDMI - NIR PÁSMO</strong></h5>
+					<h5><strong>NDMI - VÝSLEDEK</strong></h5>
+					
 				  </div>
-                  <div class="col-sm-4"><br>
-                    <h5><strong>RED PÁSMO</strong></h5>
-                    <select id="">
-                        <option value="A">LANDSAT 7</option>
-                        <option value="B">LANDSAT 8</option>
-                        <option value="C">SENTINEL 2</option>            
-                    </select>    
+				  <div class="col-sm-6"><br>
+                    <select id="pasmo1">
+                        <option value="l7b03">LANDSAT 7</option>
+                        <option value="l8b03">LANDSAT 8</option>
+                        <option value="s2b04">SENTINEL 2</option>            
+                    </select><br>
+					<br><select id="pasmo2">
+                        <option value="l7b04">LANDSAT 7</option>
+                        <option value="l8b04">LANDSAT 8</option>
+                        <option value="s2b04">SENTINEL 2</option>            
+                    </select><br>
+					<br><select id="ndvi">
+                        <option value="">NDMI L7</option>
+                        <option value="">NDMI L8</option>
+                        <option value="">NDMI S2</option>            
+                    </select>
+					<div class="btn-group-vertical">
+                    <br><button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET NDMI IDX</button><hr>
+                    </div>
                   </div>
-                  <div class="col-sm-4"><br>
-                    <h5><strong>NIR PÁSMO</strong></h5>
-                    <select id="">
-                        <option value="A">LANDSAT 7</option>
-                        <option value="B">LANDSAT 8</option>
-                        <option value="C">SENTINEL 2</option>            
-                    </select>    
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <h5><strong>VÝSLEDEK</strong></h5>
-                    <select id="">
-                        <option value="A">NDVI L7</option>
-                        <option value="B">NDVI L8</option>
-                        <option value="C">NDVI S2</option>            
-                    </select>    
-                  </div>
-				  
-                  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <!--<button id="" class="btn btn-primary btn-sm btn-block">ODSTRANIT</button>-->
-                    </div>     
-                  </div>
-				  
-				  <div class="col-sm-12">
-                    <br><h4><strong>SAVI</strong></h4>
+                  <div class="col-sm-6"><br>
+                    <h5><strong>SAVI - RED PÁSMO</strong></h5>
+					<h5><strong>SAVI - NIR PÁSMO</strong></h5>
+					<h5><strong>SAVI - VÝSLEDEK</strong></h5>
+					
 				  </div>
-				  <div class="col-sm-4"><br>
-                    <h5><strong>RED PÁSMO</strong></h5>
-                    <select id="">
-                        <option value="A">LANDSAT 7</option>
-                        <option value="B">LANDSAT 8</option>
-                        <option value="C">SENTINEL 2</option>            
-                    </select>    
-                  </div>
-                  <div class="col-sm-4"><br>
-                    <h5><strong>NIR PÁSMO</strong></h5>
-                    <select id="">
-                        <option value="A">LANDSAT 7</option>
-                        <option value="B">LANDSAT 8</option>
-                        <option value="C">SENTINEL 2</option>            
-                    </select>    
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <h5><strong>VÝSLEDEK</strong></h5>
-                    <select id="">
-                        <option value="A">NDVI L7</option>
-                        <option value="B">NDVI L8</option>
-                        <option value="C">NDVI S2</option>            
-                    </select>    
+				  <div class="col-sm-6"><br>
+                    <select id="pasmo1" label="NIR">
+                        <option value="l7b03">LANDSAT 7</option>
+                        <option value="l8b03">LANDSAT 8</option>
+                        <option value="s2b04">SENTINEL 2</option>            
+                    </select><br>
+					<br><select id="pasmo2">
+                        <option value="l7b04">LANDSAT 7</option>
+                        <option value="l8b04">LANDSAT 8</option>
+                        <option value="s2b04">SENTINEL 2</option>            
+                    </select><br>
+					<br><select id="">
+                        <option value="">SAVI L7</option>
+                        <option value="">SAVI L8</option>
+                        <option value="">SAVI S2</option>            
+                    </select>
+					<div class="btn-group-vertical">
+                    <br><button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET SAVI IDX</button><hr>
+                    </div><br>
                   </div>
 				  
-                  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">VÝPOČET INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    <button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT INDEX</button>
-                    </div>     
-                  </div>
-				  <div class="col-sm-4"><br>
-                    <div class="btn-group-vertical">
-                    </div>     
-                  </div>
-			    </div>
-              <div class="sidebar-pane" id="messages">
-			    <h1 class="sidebar-header">Korekční výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+				</div>
+              <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Senzorová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h4><strong>Statistické výpočty</strong></h4>
 				<div class="col-sm-6">
-                    <h5><strong>Lokalizace</strong></h5>
-					<select id="sensorType">
+                    <h5><strong>Lokalizace senzoru</strong></h5>
+					<select id="sensorType" class="form-control">
                         <option value="envirodata">senzor enviro</option>
                         <option value="">senzor libelium</option>
                         <option value="">senzor sigfox</option>            
                     </select><br>
+				<h5><strong>Měřená veličina</strong></h5>
+					<select id="merenaVelicina" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select><br>
 				</div>
 				<div class="col-sm-6">
                     <h5><strong>Časový extent</strong></h5>
-					<select id="datetime">
+					<select id="datetime" class="form-control">
                         <option value="2016-06-13">2016-06-13</option>
                         <option value="2016-06-14">2016-06-14</option>
                         <option value="2016-06-15">2016-06-15</option>            
                     </select><br>
+					<h5><strong>Vegetační index</strong></h5>
+					<select id="" class="form-control">
+                        <option value="ndvi">NDVI</option>
+                        <option value="ndmi">NDMI</option>
+                        <option value="savivi">SAVI</option>            
+                    </select><br>
 				</div>
-				<div class="col-sm-6">
-                    <div class="btn-group-vertical">
-                    <br><button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT V MAPĚ</button>
-					<button id="filterSensorTable" class="btn btn-primary btn-sm btn-block">ATRIBUTOVÁ TABULKA</button>
-                    <hr>
+				<div class="col-sm-12">
+                    <div class="btn-group-horizontal">
+                    <br><button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT SENZOR V MAPĚ</button>
+					<button id="filterSensorTable" class="btn btn-primary btn-sm btn-block">ATRIBUTOVÁ TABULKA VYBRANÉHO SENZORU</button>
+					<button id="calculateMedian" class="btn btn-primary btn-sm btn-block">STATISTIKÉ HODNOTY MĚŘENÉ VELIČINY</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">METADATA VEGETAČNÍHO INDEXU</button>
                     </div>     
                 </div>
-				<div class="col-sm-6">
-                    <div class="btn-group-vertical">
-                    <br>
-					<button id="calculateMean" class="btn btn-primary btn-sm btn-block">POČÍTAT DENNÍ PRŮMĚR</button>
-					<button id="calculateMedian" class="btn btn-primary btn-sm btn-block">POČÍTAT DENNÍ MEDIÁN</button>
+				<div id="displayMedianTable"></div>
+				<div class="col-sm-12"><hr>
+					<h4><strong>Tvorba korekčního rastru</strong></h4>
+					<h5><strong>Název zdrojové tabulky</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select><br>
+			        <button id="" class="btn btn-primary btn-sm btn-block">VYTVOŘIT RASTR</button>
+                </div>
+				</div>
+				<div class="col-sm-12"><hr>
+					<h4><strong>Vložení hodnot</strong></h4>
+					<label>zdrojová tabulka </label><select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select>
+                    <label>velikost rastrové dlaždice - rozměr x </label><input id="message_id" class="form-control" name="tileX" type="number" />
+					<label>velikost rastrové dlaždice - rozměr y </label><input id="message_id" class="form-control" name="tileY" type="number" />
+					<label>souřadnice x levého horního rohu </label><input id="message_id" class="form-control" name="upleftcornX" type="number" />
+					<label>souřadnice y levého horního rohu </label><input id="message_id" class="form-control" name="upleftcornY" type="number" />
+					<label>velikost pixelu x </label><input id="message_id" class="form-control" name="pixelX" type="number" />
+					<label>velikost pixelu y </label><input id="message_id" class="form-control" name="pixelY" type="number" />
+					<label>souřadnicový systém </label><select id="" class="form-control">
+                        <option value="">UTM 33N</option>
+                        <option value="">WGS 84</option> 
+						<option value="">S-JTSK</option>
+                    </select>
+					<label>bitová hloubka </label><select id="" class="form-control">
+                        <option value="">8-bit</option>
+                        <option value="">16-bit</option>            
+                    </select>
+					<label>hodnota pixelu </label><input id="message_id" class="form-control" name="pixelY" type="number" />
+					<div class="btn-group-horizontal">
+                    <br><button id="" class="btn btn-primary btn-sm btn-block">VLOŽIT HODNOTY Z MEDIÁNU DO PIXELU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">VYTVOŘIT RASTR Z PRŮMĚRU</button>
                     <hr>
                     </div>
 				</div>
-				<div id="displayMedianTable"></div>
-				<h4><strong>Tvorba korekčního rastru</strong></h4>
-				
-				<h4><strong>Korekční výpočet</strong></h4>
-				
-				
 			  </div>
 			  <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Nápověda<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
               </div>
+              <div class="sidebar-pane" id="messages">
+			    <h1 class="sidebar-header">Korekční výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+				<h4><strong>Korekční výpočet</strong></h4>
+			  </div>
             </div>
         </div>
         <div id="mapdiv"></div>
 		<div id="displaySensorTable"></div>
-        
         <!--Scripty-->
         <script>
             var map = L.map('mapdiv', { zoomControl:false });

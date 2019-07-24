@@ -12,7 +12,6 @@
 	$sqlMean = $dbsensor->prepare("SELECT to_char(AVG (ta), '99999999999999999D999') AS průměr FROM $sensorType WHERE timestamp::text LIKE '$datetime%';");
 	$sqlMean->execute();
     
-	echo "<h5>Výsledné hodnoty</h5>";
 	echo "<table id= 'dtHorizontalVerticalExample' class= 'table table-striped table-bordered table-sm' cellspacing='0', width= '100%'>";
     echo "<tr><th>median</th></tr>";
     while ($row = $sqlMedian->fetch(PDO::FETCH_ASSOC)){
