@@ -163,7 +163,7 @@
                     <h5><strong>Lokalizace senzoru</strong></h5>
 					<select id="sensorType" class="form-control">
                         <option value="envirodata">senzor enviro</option>
-                        <option value="">senzor libelium</option>
+                        <option value="sens">senzor libelium</option>
                         <option value="">senzor sigfox</option>            
                     </select><br>
 				<h5><strong>Měřená veličina</strong></h5>
@@ -192,11 +192,11 @@
                     <br><button id="displaysenzor" class="btn btn-primary btn-sm btn-block">ZOBRAZIT SENZOR V MAPĚ</button>
 					<button id="filterSensorTable" class="btn btn-primary btn-sm btn-block">ATRIBUTOVÁ TABULKA VYBRANÉHO SENZORU</button>
 					<button id="calculateMedian" class="btn btn-primary btn-sm btn-block">STATISTIKÉ HODNOTY MĚŘENÉ VELIČINY</button>
-					<button id="" class="btn btn-primary btn-sm btn-block">METADATA VEGETAČNÍHO INDEXU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">METADATA VEGETAČNÍHO INDEXU</button><hr>
                     </div>     
                 </div>
 				<div id="displayMedianTable"></div>
-				<div class="col-sm-12"><hr>
+				<div class="col-sm-12">
 					<h4><strong>Tvorba korekčního rastru</strong></h4>
 					<h5><strong>Název zdrojové tabulky</strong></h5>
 					<select id="" class="form-control">
@@ -242,7 +242,52 @@
               </div>
               <div class="sidebar-pane" id="messages">
 			    <h1 class="sidebar-header">Korekční výpočty<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-				<h4><strong>Korekční výpočet</strong></h4>
+				<div class="col-sm-12">
+					<h5><strong>Vegetační index</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">ndvi</option>
+                        <option value="">ndmi</option>
+                        <option value="">savi</option>            
+                    </select>
+					<h5><strong>Korekční rastr</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select>
+					<h5><strong>Název přepočítaného rastru</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">ndviTeplota</option>
+                        <option value="">ndviVzdusnaVlhk</option>
+                        <option value="">saviSrazky</option>            
+                    </select><br>
+			        <button id="" class="btn btn-primary btn-sm btn-block">METADATA VEGETAČÍHO INDEXU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">METADATA KOREKČNÍHO RASTRU</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">VYPOČÍTAT MODIFIKOVANÝ VEGETAČNÍ INDEX</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT VEGETAČNÍ INDEX</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT MODIFIKOVANÝ VEGETAČNÍ INDEX</button><hr>
+					
+					<h5><strong>Zadat souřadnice bodu</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select>
+					<h5><strong>Základní vegetační index</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select>
+					<h5><strong>Přepočítaný vegetační index</strong></h5>
+					<select id="" class="form-control">
+                        <option value="">teplota</option>
+                        <option value="">rel. vzdušná vlhokst</option>
+                        <option value="">srážky</option>            
+                    </select><br>
+					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HODNOTU PIXELU PŮVODNÍ INDEX</button>
+					<button id="" class="btn btn-primary btn-sm btn-block">ZOBRAZIT HODNOTU PIXELU PŘEPOČÍTANÝ INDEX</button><hr>
+                </div>
 			  </div>
             </div>
         </div>
@@ -282,6 +327,19 @@
 
             var overlays = {
             };
+			
+			$("#displaysenzor").click(function(){
+				$.ajax({
+                url:'sensorLocation.php',
+                type:'POST',
+                data:{
+                    sensorType:$("#sensorType").val(),
+					},
+                success: function(response){
+                    var querySenzor=L.geoJSON(JSON.parse(response)).addTo(map);
+                }
+            });
+        });
 			
 					
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
