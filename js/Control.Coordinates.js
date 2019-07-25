@@ -16,7 +16,7 @@ L.Control.Coordinates = L.Control.extend({
 		latitudeText: 'zkopírovat souřadnice lat',
 		longitudeText: 'lon',
 		promptText: 'Zkopírujete přes ctrl + c souřadnice do formuláře "hodnota pixelu v bodě"',
-		precision: 2
+		precision: 4
 	},
 
 	initialize: function(options)
