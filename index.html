@@ -327,20 +327,6 @@
 
             var overlays = {
             };
-			
-			$("#displaysenzor").click(function(){
-				$.ajax({
-                url:'sensorLocation.php',
-                type:'POST',
-                data:{
-                    sensorType:$("#sensorType").val(),
-					},
-                success: function(response){
-                    var querySenzor=L.geoJSON(JSON.parse(response)).addTo(map);
-                }
-            });
-        });
-			
 					
             L.control.layers(baseLayers, overlays, {collapsed:true}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
@@ -410,6 +396,32 @@
             });
         });
     </script>
+	<script>
+        $("#displaysenzor").click(function(){
+        $.ajax({
+            url:'sensorLocation.php',
+            type:'POST',
+            data:{
+                sensorType: $("#sensorType").val(),
+                },
+                success: function(response){
+                    console.log(response);
+                    senzorParser(response);
+                }
+            });
+        });
+		
+		function senzorParser(response) {
+          var res = response.split(",");
+          //var x = res[0];
+          //var y = res[1];
+          getSenzorCoord(res);
+		  console.log(res);
+		  //console.log(x, y);
+		  
+		  }
+		</script>
+	
 	<script>
         $("#calculateMedian").click(function(){
             $.ajax({
