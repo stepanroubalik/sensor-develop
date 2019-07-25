@@ -163,7 +163,7 @@
                     <h5><strong>Lokalizace senzoru</strong></h5>
 					<select id="sensorType" class="form-control">
                         <option value="envirodata">senzor enviro</option>
-                        <option value="sens">senzor libelium</option>
+                        <option value="sensorType">senzor libelium</option>
                         <option value="">senzor sigfox</option>            
                     </select><br>
 				<h5><strong>Měřená veličina</strong></h5>
@@ -406,20 +406,20 @@
                 },
                 success: function(response){
                     console.log(response);
-                    senzorParser(response);
+                    //senzorParser(response);
                 }
             });
         });
 		
-		function senzorParser(response) {
-          var res = response.split(",");
+		//function senzorParser(response) {
+          //var res = response.split(",");
           //var x = res[0];
           //var y = res[1];
-          getSenzorCoord(res);
-		  console.log(res);
+          //getSenzorCoord(res);
+		  //console.log(res);
 		  //console.log(x, y);
 		  
-		  }
+		  //}
 		</script>
 	
 	<script>
