@@ -160,10 +160,16 @@
                 <h1 class="sidebar-header">Senzorová data<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <h4><strong>Statistické výpočty</strong></h4>
 				<div class="col-sm-6">
-                    <h5><strong>Lokalizace senzoru</strong></h5>
+                    <h5><strong>Typ senzoru</strong></h5>
 					<select id="sensorType" class="form-control">
                         <option value="envirodata">senzor enviro</option>
                         <option value="sensorType">senzor libelium</option>
+                        <option value="">senzor sigfox</option>            
+                    </select><br>
+					<h5><strong>Lokalizace</strong></h5>
+					<select id="sens" class="form-control">
+                        <option value="sens">senzor enviro</option>
+                        <option value="">senzor libelium</option>
                         <option value="">senzor sigfox</option>            
                     </select><br>
 				<h5><strong>Měřená veličina</strong></h5>
@@ -402,7 +408,7 @@
             url:'sensorLocation.php',
             type:'POST',
             data:{
-                sensorType: $("#sensorType").val(),
+                sens: $("#sens").val(),
                 },
                 success: function(response){
                     console.log(response);
