@@ -23,19 +23,21 @@
     echo"</table>";
 	
 	/*Convert raster from 16-bit type to 8-bit type*/
-	$sqlTransform = $db->prepare("UPDATE $tabulka SET rast = ST_Reclass(rast,'0–2147483647:0-255', '8BUI');");
-	$sqlTransform->execute();
+	//$sqlTransform = $db->prepare("UPDATE $tabulka SET rast = ST_Reclass(rast,'0–2147483647:0-255', '8BUI');");
+	//$sqlTransform->execute();
 	
-	/*Create a temporary table and create a jpg file from temp table*/
+	/*Create a temporary table and create a jpg file from temp table
 	$deleteTempTable = $db->prepare("DROP TABLE IF EXISTS tmp_out;");
 	$deleteTempTable->execute();
 	$createTempTable = $db->prepare("CREATE TABLE tmp_out AS SELECT lo_from_bytea(0, 
 	ST_AsGDALRaster(ST_Union(rast), 'JPEG', ARRAY['QUALITY=50'])) AS loid
     FROM $tabulka;");
     $createTempTable->execute();
-	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\ndvi.jpg')
+	//$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\l8b06.jpg')
+    //FROM tmp_out;");
+	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\\$tabulka.jpg')
     FROM tmp_out;");
-	$createFile->execute();
+	$createFile->execute();*/
 	
 ?>
 
