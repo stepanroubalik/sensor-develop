@@ -1,6 +1,6 @@
 <?php
 	$sensorType = $_POST['sensorType'];
-	$datetime = $_POST['datetime'];
+	$datetime = $_POST['datetime1'];
 	$merenaVelicina = $_POST['merenaVelicina'];
 	$dbsensor = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=sensor;', 'roubalik', 'dp_roubalik2019');
 	

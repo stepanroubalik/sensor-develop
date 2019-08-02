@@ -1,6 +1,7 @@
 <?php
 	$sensorType = $_POST['sensorType'];
 	$datetime = $_POST['datetime'];
+	//$den = $_POST['den'];
 	$dbsensor = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=sensor;', 'roubalik', 'dp_roubalik2019');
 	$sqlSensorData = $dbsensor->prepare("SELECT timestamp, virrib, rh, ta, ec5, rg, vbatt FROM $sensorType WHERE timestamp::text LIKE '$datetime%';");
 	$sqlSensorData->execute();
