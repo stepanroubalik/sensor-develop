@@ -2,8 +2,8 @@
     $redpasmo = $_POST['savi_red'];
     $nirpasmo = $_POST['savi_nir'];
 	$index = $_POST['savi'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
-	//$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
+    //$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+	$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
     $deleteSaviTable = $db->prepare("DROP TABLE IF EXISTS $index;");
 	$deleteSaviTable->execute();	
 	$sql = $db->prepare("CREATE TABLE $index AS SELECT ST_MapAlgebra
