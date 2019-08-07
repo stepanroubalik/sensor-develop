@@ -2,7 +2,8 @@
     $redpasmo = $_POST['ndviRed'];
     $nirpasmo = $_POST['ndviNir'];
 	$ndvi = $_POST['ndvi'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+    //$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+	$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
     $deleteNdviTable = $db->prepare("DROP TABLE IF EXISTS $ndvi;");
 	$deleteNdviTable->execute();	
 	$sql = $db->prepare("CREATE TABLE $ndvi AS SELECT ST_MapAlgebra

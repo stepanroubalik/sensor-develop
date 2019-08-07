@@ -2,7 +2,8 @@
     $ndmiSwir = $_POST['ndmiSwir'];
     $ndmiNir = $_POST['ndmiNir'];
 	$index = $_POST['ndmi'];
-    $db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+    //$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+	$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
     $deleteNdmiTable = $db->prepare("DROP TABLE IF EXISTS $index;");
 	$deleteNdmiTable->execute();	
 	$sql = $db->prepare("CREATE TABLE $index AS SELECT ST_MapAlgebra

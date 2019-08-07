@@ -124,17 +124,20 @@
 			  <label>NIR PÁSMO</label><select id="ndmiNir" class="form-control">
 				<option value="l7b04">LANDSAT 7</option>
 				<option value="l8b05">LANDSAT 8</option>
-				<option value="s2b08a">SENTINEL 2</option>            
+				<option value="s2b08a">SENTINEL 2</option> 
+				<option value="test_s2b08a">Testovací data Sentinel 2</option>
 			  </select>
 			  <br><label>SWIR PÁSMO</label><select id="ndmiSwir" class="form-control">
 				<option value="l7b05">LANDSAT 7</option>
 				<option value="l8b06">LANDSAT 8</option>
-				<option value="s2b11">SENTINEL 2</option>            
+				<option value="s2b11">SENTINEL 2</option>
+				<option value="test_s2b11">Testovací data Sentinel 2</option>				
 			  </select>
 			  <br><label>VYPOČÍTANÝ VEGETAČNÍ INDEX</label><select id="ndmi" class="form-control">
 				<option value="l7_ndmi">NDMI Landsat 7</option>
 				<option value="l8_ndmi">NDMI Landsat 8</option>
-				<option value="s2_ndmi">NDMI Sentinel 2</option>            
+				<option value="s2_ndmi">NDMI Sentinel 2</option>
+				<option value="test_s2ndmi">testovací NDMI Sentinel 2</option>
 			  </select>
 			  <br><button id="indexNDMI" class="btn btn-primary btn-sm btn-block">VÝPOČET NDMI IDX</button><hr>
 			</div>
@@ -211,7 +214,8 @@
 				<option value="2019-04-19">2019-04-19</option>
 				<option value="2019-04-20">2019-04-20</option>
 				<option value="2019-04-21">2019-04-21</option>
-				<option value="2019-07-20">2019-07-20</option>
+				<option value="2019-07-20">2019-06-12</option>
+				<option value="2019-07-20">2019-06-19</option>
 				<option value="2019-07-21">2019-07-21</option>
 				<option value="2019-07-22">2019-07-22</option>            
 			  </select><br>
@@ -235,13 +239,13 @@
 				<option value="test_s2b11">testovací SWIR pásmo</option>
 			  </select><br>
 			  <label>Hodnota senzorové veličiny</label><input id="sensorValue" class="form-control" type="number"/>
-			  <h5><strong>Vytvořit přepočítaný vegetační index podle</strong></h5>
+			  <h5><strong>Vytvořit přepočítaný vegetační index NDMI</strong></h5>
 			  <select id="korekcniNdmi" class="form-control">
 				<option value="l8ndmi_rh">Landsat 8 podle relativní vzdušné vlhkosti (rh)</option>
 				<option value="s2ndmi_rh">Sentinel 2 podle relativní vzdušné vlhkosti (rh)</option>
 				<option value="l8ndmi_virrib">Landsat 8 podle objemové půdní vlhkosti (virrib)</option>
 				<option value="s2ndmi_virrib">Sentinel 2 podle objemové půdní vlhkosti (virrib)</option>
-				<option value="test_s2ndmi_virrib">Sentinel 2 podle objemové půdní vlhkosti (virrib)</option>
+				<option value="test_s2ndmi_virrib"> testovací Sentinel 2 podle objemové půdní vlhkosti (virrib)</option>
 			  </select><br>
 			  <button id="calculateDifference" class="btn btn-primary btn-sm btn-block">VYTVOŘIT PŘEPOČÍTANÝ INDEX</button>
 			  <button id="reclass" class="btn btn-primary btn-sm btn-block">REKLASIFIKOVAT PŘEPOČÍTANÝ INDEX</button>
@@ -269,11 +273,11 @@
 			  <br><button class="btn btn-primary btn-sm btn-block">VÝPOČET NDVI IDX</button><br>
 			</div>
 			<div class="col-sm-6">
-			  <br><p>Zadání prvního rastrového pásma pro výpočet<br><br>
+			  <br><br><p>Zadání prvního rastrového pásma pro výpočet<br><br>
 			  Zadání druhého rastrového pásma pro výpočet<br><br><br>
 			  Zadání názvu vegetačního indexu pro typ zdroje<br>
-			  Landsat 7, Landsat 8, Sentinel 2. Spuštění výpočtu tlačítkem "VÝPOČET..."<br>
-			  Ve všech polích musí být zadaný stejný název družice. Jinak výpočet neproběhne správně.
+			  Landsat 7, Landsat 8, Sentinel 2 a spuštění výpočtu tlačítkem "VÝPOČET..."<br>
+			  Ve všech polích musí být zadaný stejný název družicových dat. Jinak výpočet neproběhne správně.
 			  </p>
 			</div>
 			<h4><strong>Zjištění průměrné hodnoty ze senzoru</strong></h4>
@@ -284,17 +288,17 @@
 			  </select><br>
 			  <h5><strong>Veličina</strong></h5>
 			  <select class="form-control">
-				<option>rel. půdní vlhokst</option>
-				<option>rel. vzdušná vlhokst</option>
-				<option>teplota</option>
-				<option>srážky</option>            
+				<option>objemová půdní vlhokst</option>
+				<option>relativní vzdušná vlhokst</option>
+				<option>teplota</option>            
 			  </select><br>
 			  <h5><strong>Denní časový extent</strong></h5>
 			  <select class="form-control">
 				<option>2019-04-19</option>
-				<option>2019-04-20</option>        
+				<option>2019-04-20</option>   
+				<option>...</option>
 			  </select><br>
-			  <button class="btn btn-primary btn-sm btn-block">STATISTIKA VELIČINY</button>
+			  <button class="btn btn-primary btn-sm btn-block">STATISTIKA</button>
 			</div>
 			<div class="col-sm-6">
 			  <br><br><p>Zadání typu senzoru<br><br><br><br><br>
@@ -305,28 +309,34 @@
 			</div>
 			<h4><strong>Korekční výpočet nad NDMI indexem</strong></h4>
 			<div class="col-sm-6">
-			  <h5><strong>Vegetační index</strong></h5>
+			  <h5><strong>NIR pásmo</strong></h5>
 			  <select class="form-control">
-				<option>L8 NDMI</option>
-				<option>S2 NDMI</option>
-				<option>testovací index NDMI</option>
+				<option>Landsat 8 NIR</option>
+				<option>Sentinel 2 NIR</option>
+				<option>testovací pásmo Sentinel 2</option>
+			  </select><br>
+			  <h5><strong>SWIR pásmo</strong></h5>
+			  <select class="form-control">
+				<option>Landsat 8 NIR</option>
+				<option>Sentinel 2 NIR</option>
+				<option>testovací pásmo Sentinel 2</option>
 			  </select><br>
 			  <label>Hodnota senzorové veličiny</label><input class="form-control" type="number"/>
-			  <h5><strong>Přepočítaný vegetační index podle</strong></h5>
+			  <h5><strong>Vytvořit přepočítaný vegetační index NDMI</strong></h5>
 			  <select class="form-control">
-				<option >relativní vzdušné vlhkosti</option>
-				<option >relativní půdní vlhkosti</option>   						
+				<option>Landsat 8 podle relativní vzdušné vlhkosti (rh)</option>
+				<option>Sentinel 2 podle relativní vzdušné vlhkosti (rh)</option>
+				<option>...</option>
 			  </select><br><br>
 			  <button class="btn btn-primary btn-sm btn-block">Vypočítat rozdílový rastr</button>
-			  <button class="btn btn-primary btn-sm btn-block">Reklasifikovat</button><br>
 			</div>
 			<div class="col-sm-6">
-			  <br><br><p>Zadání vstupního NDMI indexu<br><br><br><br>
+			  <br><br><p>Zadání vstupního NIR pásma rastru<br><br><br>
+			  <p>Zadání vstupního SWIR pásma rastru<br><br><br><br>
 			  Zadání průměrné nebo<br>
 			  mediánové veličiny (například 0.5)<br><br>
 			  Zadání názvu nově vypočítaného korekčního rastru.<br><br>
-			  Tlačítka pro zahájení výpočtu korekčního rastru<br>
-			  s možností spustit následnou reklasifikaci.
+			  Tlačítko pro zahájení výpočtu korekčního rastru<br>
 			  </p>
 			</div>
 		  </div>
@@ -340,23 +350,6 @@
 	  <div id="displaySensorTable"></div>
 	  
     <!--Scripts-->
-    <script>
-		$("#calculateDifference").click(function(){
-		  $.ajax({
-			url:'sensorCorrection.php',
-			type:'POST',
-			data:{
-                corNIR:$("#corNIR").val(),
-				corSWIR:$("#corSWIR").val(),
-				sensorValue:$("#sensorValue").val(),
-				korekcniNdmi:$("#korekcniNdmi").val(),
-                },
-            success: function(){
-				alert("index NDMI byl přepočítán o hodnotu vybrané senzorové veličiny");
-								}
-							});
-						});
-	</script>
 	<script>
             var map = L.map('mapdiv', { zoomControl:false });
             map.setView([49.5938686, 17.2508706], 12);
@@ -406,18 +399,7 @@
                 var imageUrl = './data/'+vybranyTypRastru+'.jpg';
                 var rastrSnimek = L.imageOverlay(imageUrl, imageBounds).addTo(map);
                 }
-            //napsat tlačítko které po stisknutí udělá map.removeLayer(rastrSnimek)
-            //./data/export/
-			//var text1x = $('#text1x').val(), 
-                //text1y = $('#text1y').val(),
-                //text2x = $('#text2x').val(),    
-                //text2y = $('#text2y').val();    
-                //console.log($('#text1').val());
-                //console.log($('#text2').val());
-                //L.marker([text1y, text1x]).addTo(map);
-                //L.marker([text2y, text2x]).addTo(map);
-				//console.log(vybranyTypRastru);
-				
+			
 			function getIndex(prvni, treti){
 			var souradnice1x = prvni[0],
 			souradnice1y = prvni[1],
@@ -448,7 +430,6 @@
 					
             L.control.layers(baseLayers, overlays, {collapsed:false}).addTo(map);
             L.control.scale({imperial:false, position:'bottomright'}).addTo(map);
-			
     </script>
 
     <script>
@@ -516,7 +497,6 @@
           var firstA = first[1].split(" ");
           var third = res[2].split(" ");
           getBound(firstA, third);
-		  //console.log(third);
 		  }
     </script>
 	
@@ -529,7 +509,6 @@
                 vegetacni: $("#vegetacni").val(),
                 },
                 success: function(response){
-					//console.log(response);
 					indexParser(response);
                 }
             });
@@ -644,12 +623,41 @@
         });
 		function senzorParser(response) {
           var res = response.split(",");
-          //var x = res[0];
-          //var y = res[1];
           getSenzorCoord(res);
-		  //console.log(res);
-		  //console.log(x, y);
 		  }
+	</script>
+	
+	<script>
+		$("#calculateDifference").click(function(){
+		  $.ajax({
+			url:'sensorCorrection.php',
+			type:'POST',
+			data:{
+                corNIR:$("#corNIR").val(),
+				corSWIR:$("#corSWIR").val(),
+				sensorValue:$("#sensorValue").val(),
+				korekcniNdmi:$("#korekcniNdmi").val(),
+                },
+            success: function(){
+				alert("index NDMI byl přepočítán o hodnotu vybrané senzorové veličiny");
+								}
+							});
+						});
+	</script>
+	
+	<script>
+		$("#reclass").click(function(){
+		  $.ajax({
+			url:'sensorReclass.php',
+			type:'POST',
+			data:{
+				korekcniNdmi:$("#korekcniNdmi").val(),
+                },
+            success: function(){
+				alert("index NDMI byl přepočítán o hodnotu vybrané senzorové veličiny");
+								}
+							});
+						});
 	</script>
     </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
 	/*Create a database connection*/
 	$tabulka = $_POST['meta'];
-	$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
-	
+	//$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+	$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
 	/*Create and display raster metadata*/
 	$sqlMetadata = $db->prepare("SELECT
 				ST_Height(rast) As h,

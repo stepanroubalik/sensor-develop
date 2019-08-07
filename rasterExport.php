@@ -1,8 +1,8 @@
 <?php
 	/*Create a database connection*/
 	$tabulka = $_POST['meta'];
-	$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
-	//$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
+	//$db = new PDO('pgsql:host=localhost;port=5432;dbname=diplomka;', 'postgres', 'sr');
+	$db = new PDO('pgsql:host=158.194.94.120;port=5432;dbname=db_roubalik;', 'roubalik', 'dp_roubalik2019');
 	
 	/*Create a temporary table and create a jpg file from temp table*/
 	$deleteTempTable = $db->prepare("DROP TABLE IF EXISTS tmp_out;");
@@ -12,8 +12,6 @@
     FROM $tabulka;");
     $createTempTable->execute();
 	$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\xampp\htdocs\diplomka\data\\$tabulka.jpg') FROM tmp_out;");
-	//$createFile = $db->prepare("SELECT lo_export(loid, 'localhost/diplomka/data/$tabulka.jpg') FROM tmp_out;");
-	//$createFile = $db->prepare("SELECT lo_export(loid, 'C:\\exp\\$tabulka.jpg') FROM tmp_out;");
 	$createFile->execute();
 	
 ?>
